@@ -1,1 +1,1 @@
-
+print('Live update test')
