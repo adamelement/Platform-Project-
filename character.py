@@ -10,12 +10,7 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.max_speed = max_speed
 
     def movement_left(self):
-        self.movement_speed = self.max_speed / 2 
-        acceleration = self.movement_speed/ 0.1666666666
-        iter = 1
-        while iter <= 10:
-            time.sleep(0.01666666666)
-            self.movement_speed += (acceleration * 0.01666666666)
+
 
 
         
