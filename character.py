@@ -9,7 +9,16 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.direction = direction
         self.max_speed = max_speed
 
+    def movement_right(self):
+        delta_time = 1 / 6
+        acceleration = self.max_speed / delta_time
+        self.movement_speed += acceleration
+    
     def movement_left(self):
+        delta_time = 1 / 6
+        acceleration = self.max_speed / delta_time
+        self.movement_speed -= acceleration
+        
 
 
 
@@ -23,7 +32,7 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
 
 
 
-marshal = Character( 31 , 1.8 , 95  )
+marshal = Character( 31 , 1.8 , 95, 3, 4, 6  )
     
 
 
