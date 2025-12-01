@@ -1,11 +1,31 @@
+import time
 
-class Character(self, jump_height, movement_speed, weight, lives, direction):
+class Character(self, jump_height, movement_speed, weight, lives, direction, max_speed):
     def __init__():
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
         self.lives = lives
         self.direction = direction
+        self.max_speed = max_speed
+
+    def movement_left(self):
+        self.movement_speed = self.max_speed / 2 
+        acceleration = self.movement_speed/ 0.1666666666
+        iter = 1
+        while iter <= 10:
+            time.sleep(0.01666666666)
+            self.movement_speed += (acceleration * 0.01666666666)
+
+
+        
+
+
+
+
+
+
+
 
 
 marshal = Character( 31 , 1.8 , 95  )
