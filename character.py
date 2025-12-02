@@ -10,15 +10,27 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.max_speed = max_speed
 
     def movement_right(self):
-        delta_time = 1 / 6
-        acceleration = self.max_speed / delta_time
-        self.movement_speed += acceleration
-    
+        if self.horiz_movement_speed < self.max_speed:
+            horiz_acceleration = self.max_speed / 10
+            self.horiz_movement_speed += horiz_acceleration
+
     def movement_left(self):
-        delta_time = 1 / 6
-        acceleration = self.max_speed / delta_time
-        self.movement_speed -= acceleration
-        
+        if self.horiz_movement_speed > self.max_speed:
+            horiz_acceleration = self.max_speed / 10
+            self.horiz_movement_speed -= horiz_acceleration
+    
+    def stop(self):
+        self.horiz_movement_speed = 0
+
+    def jump(self):
+        vert_acceleration = self.jump_height * 20
+
+    def double_jump(self):
+        vert_acceleration = self.jump_height * 20
+
+    def gravity(self):
+        vert_acceleration -= 1
+        self.vert_movement_speed + vert_acceleration
 
 
 
