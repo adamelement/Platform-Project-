@@ -10,25 +10,35 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.max_speed = max_speed
 
     def movement_right(self):
+        global self.horiz_movement_speed
         if self.horiz_movement_speed < self.max_speed:
             horiz_acceleration = self.max_speed / 10
             self.horiz_movement_speed += horiz_acceleration
 
     def movement_left(self):
+        global self.horiz_movement_speed
         if self.horiz_movement_speed > self.max_speed:
             horiz_acceleration = self.max_speed / 10
             self.horiz_movement_speed -= horiz_acceleration
     
     def stop(self):
+        global self.horiz_movement_speed
         self.horiz_movement_speed = 0
 
     def jump(self):
+        global vert_acceleration
         vert_acceleration = self.jump_height * 20
 
+    def short_hop(self):
+        global vert_acceleration
+        vert_acceleration = self.jump_height * 8
+
     def double_jump(self):
+        global vert_acceleration
         vert_acceleration = self.jump_height * 20
 
     def gravity(self):
+        global vert_acceleration
         vert_acceleration -= 1
         self.vert_movement_speed + vert_acceleration
 
