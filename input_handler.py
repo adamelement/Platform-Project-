@@ -8,6 +8,7 @@ class InputHandler():
             double_jump = False
         elif air_bound and not double_jump:
             character.jump()
+            double_jump = True
 
     def attack():
         keys = pygame.key.get_pressed()
