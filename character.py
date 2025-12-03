@@ -1,7 +1,7 @@
 import time
 
-class Character(self, jump_height, movement_speed, weight, lives, direction, max_speed):
-    def __init__():
+class Character(self, jump_height, movement_speed, weight, lives, direction, max_speed): # should just have class Character - all that should go in init
+    def __init__(): #  def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed):
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
@@ -10,7 +10,7 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.max_speed = max_speed
 
     def movement_right(self):
-        global self.horiz_movement_speed
+        global self.horiz_movement_speed # don't use the global keyword in classes - it's not needed and defeats the purpose of classes and encapsulation and can make debugging very tough 
         if self.horiz_movement_speed < self.max_speed:
             horiz_acceleration = self.max_speed / 10
             self.horiz_movement_speed += horiz_acceleration
