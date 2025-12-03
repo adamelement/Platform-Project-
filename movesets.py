@@ -8,9 +8,9 @@
 marshal_dash_frames = []
 for i in range (1,11):
     image = pygame.image.load(f'Marshal_dash{i}.png').convert_alpha()
-    dash_frames.append(image)
+    marshal_dash_frames.append(image)
 
 marshal_airidle = []
 for i in range(1,32)
-    image = pygame.image.load(f'Marshal_dash{i}.png').convert_alpha()
-    dash_frames.append(image)
+    image = pygame.image.load(f'Marshal_Airidle{i}.png').convert_alpha()
+    marshal_airidle.append(image)
