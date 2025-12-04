@@ -1,5 +1,97 @@
+
+
+import sys
+import pygame
+
+from constants import (
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    BACKGROUND_COLOR,
+    CAPTION,
+    FPS,
+    PLAYER1_COLOUR,
+    PLAYER2_COLOUR,
+    HITBOX_COLOUR,
+)
+
+from character import Character
+from stage import Stage
+from input_handler import InputHandler
+from hitbox import Hitbox
+
+
 class Game:
-  pass
-print('testing code')
-print('second test')
-print('third test')
+    """
+    Manages the entire game loop and high-level game logic.
+
+    Responsibilities:
+    - Initialize pygame, window, and stage
+    - Create and update characters
+    - Handle input via input_handler
+    - Handle attack hitboxes and knockback
+    - Draw everything each frame
+    """
+
+    def __init__(self):
+        pygame.init()
+
+        self.window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        pygame.display.set_caption(CAPTION)
+
+        self.clock = pygame.time.Clock()
+        self.is_running = True
+
+        # Stage
+        self.stage = Stage()
+
+        # Two fighting characters 
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6)
+
+        # Input handling objects for both characters 
+        self.player1_input = InputHandler(player=1)
+        self.player2_input = InputHandler(player=2)
+
+        # Attack hitboxes (spawned when attacking) 
+      
+        self.player1_attack_hitbox = None
+        self.player2_attack_hitbox = None
+
+    def run(self):
+        """Main game loop."""
+        while self.is_running:
+            dt = self.clock.tick(FPS) / 1000.0  # dt ready for later use
+
+            self.handle_events()
+            self.player1_input.read()
+            self.player2_input.read()
+            self.update()
+            self.draw()
+
+        pygame.quit()
+        sys.exit()
+
+  
+
+    def handle_events(self):
+        """Handle window events (close button, etc.)."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.is_running = False
+
+   
+
+    def update(self):
+        """Update game state: input, movement, collisions, attacks."""
+        pass 
+
+    def draw(self):
+        """Draw background, characters, and hitboxes."""
+        self.window.fill(BACKGROUND_COLOUR)
+
+        # Characters boxes
+        pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
+        pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
+
+
+        pygame.display.flip()
