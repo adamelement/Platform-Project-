@@ -1,6 +1,6 @@
 import time
 
-class Character(self, jump_height, movement_speed, weight, lives, direction, max_speed): # should just have class Character - all that should go in init
+class Character(self, x, y, jump_height, movement_speed, weight, lives, direction, max_speed): # should just have class Character - all that should go in init
     def __init__(): #  def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed):
         self.jump_height = jump_height
         self.movement_speed = movement_speed
@@ -8,6 +8,9 @@ class Character(self, jump_height, movement_speed, weight, lives, direction, max
         self.lives = lives
         self.direction = direction
         self.max_speed = max_speed
+
+        self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
+        self.colour = (255, 255, 255) # colour for drawing; not needed once we use sprites
 
     def movement_right(self):
         global self.horiz_movement_speed # don't use the global keyword in classes - it's not needed and defeats the purpose of classes and encapsulation and can make debugging very tough 
