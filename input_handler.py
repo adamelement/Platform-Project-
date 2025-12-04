@@ -1,5 +1,31 @@
 class InputHandler():
 
+    """docstring on class"""
+
+    # have an __init__() method
+
+    
+    """Consider having a general read() method checking the keys pressed once and then calling the appropriate method. For example:
+   
+    def read(self):
+    
+        keys = pygame.key.get_pressed()
+    
+        if keys[pygame.K_LEFT]:
+            #call appropriate methof from character class - moving_left() method, maybe
+        if keys[pygame.K_RIGHT]:
+            # call moving_right() for example, from character class
+            .
+            .
+            .
+
+    If there's a controller too, read can be changed to just detect whether there's a controller, in which case it will call a read_controller method, otherwise it will call a read_keyboard method which is the read() method above
+
+    
+        
+    """
+
+    
     def jump():
         global air_bound
         if not air_bound:
