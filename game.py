@@ -1,17 +1,19 @@
 
 
+
+
 import sys
 import pygame
 
 from constants import (
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
-    BACKGROUND_COLOR,
+    BACKGROUND_COLOUR,
     CAPTION,
     FPS,
-    PLAYER1_COLOUR,
-    PLAYER2_COLOUR,
-    HITBOX_COLOUR,
+    PLAYER1_COLOUR # will not be shown once sprites are blitted on,
+    PLAYER2_COLOUR # will not be shown once sprites are present, 
+    HITBOX_COLOUR # will not be drawn, making these hitboxes effectively invisible,
 )
 
 from character import Character
