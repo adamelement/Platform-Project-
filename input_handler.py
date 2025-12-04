@@ -26,44 +26,66 @@ class InputHandler():
     """
 
     
-    def jump():
-        global air_bound
-        if not air_bound:
-            character.jump()
-            air_bound = True
-            double_jump = False
-        elif air_bound and not double_jump:
-            character.jump()
-            double_jump = True
+class InputHandler:
 
-    def attack():
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
-        elif keys[pygame.K_LEFT]:
-        elif keys[pygame.K_UP]:
-        elif keys[pygame.K_DOWN]:      
-        else:
+    def read(): 
 
+        keys = pygame.key.get_pressed
 
-    def special_attack():
-        if keys[pygame.K_RIGHT]:
-        elif keys[pygame.K_LEFT]:
-        elif keys[pygame.K_UP]:
-        elif keys[pygame.K_DOWN]:      
-        else:
+        if keys[pygame.K_SPACE]:
+            global air_bound
+            if not air_bound:
+                character.jump()
+                air_bound = True
+                double_jump = False
+            elif air_bound and not double_jump:
+                character.jump()
+                double_jump = True
 
-    def movement():
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_z]:
+            if not air_bound:
+                if keys[pygame.K_RIGHT]:
+                elif keys[pygame.K_LEFT]:
+                elif keys[pygame.K_UP]:
+                elif keys[pygame.K_DOWN]:      
+                else:
 
-        elif keys[pygame.K_LEFT]:
-        
+            if air_bound:
+                if keys[pygame.K_RIGHT]:
+                elif keys[pygame.K_LEFT]:
+                elif keys[pygame.K_UP]:
+                elif keys[pygame.K_DOWN]:      
+                else:
 
-    def shielding():
-        if keys[pygame.K_RIGHT]:
-        elif keys[pygame.K_LEFT]:
-        elif keys[pygame.K_UP]:
-        elif keys[pygame.K_DOWN]:      
-        else:
+        if keys[pygame.K_x]:
+            if keys[pygame.K_RIGHT]:
+            elif keys[pygame.K_LEFT]:
+            elif keys[pygame.K_UP]:
+            elif keys[pygame.K_DOWN]:      
+            else:
 
-    def 
+        if keys[pygame.K_c]:
+            if keys[pygame.K_RIGHT]:
+            elif keys[pygame.K_LEFT]:
+            elif keys[pygame.K_UP]:
+            elif keys[pygame.K_DOWN]:      
+            else:
+
+        if keys[pygame.K_LSHIFT]:
+            if air_bound:
+                character.dodge()
+
+            if not air_bound: 
+                character.shield()
+                
+                if keys[pygame.K_RIGHT]:
+                elif keys[pygame.K_LEFT]:
+                elif keys[pygame.K_UP]:
+                elif keys[pygame.K_DOWN]:
+                elif keys[pygame.K_z]:
+                    character.grab()
+
+        if keys[pygame.K_LCRTL]:
+            if not air_bound:
+                character.grab()
+
