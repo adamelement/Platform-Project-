@@ -26,7 +26,6 @@ class InputHandler():
     """
 
     
-class InputHandler:
 
     def read(): 
 
