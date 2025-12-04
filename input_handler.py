@@ -2,7 +2,7 @@ class InputHandler():
 
     """docstring on class"""
 
-    # have an __init__() method
+    # have an __init__() method where you pass in an instance of the character class so that you can reference its methods in the read() method 
 
     
     """Consider having a general read() method checking the keys pressed once and then calling the appropriate method. For example:
@@ -12,9 +12,9 @@ class InputHandler():
         keys = pygame.key.get_pressed()
     
         if keys[pygame.K_LEFT]:
-            #call appropriate methof from character class - moving_left() method, maybe
+            #call appropriate methof from character class - character.moving_left() method, maybe
         if keys[pygame.K_RIGHT]:
-            # call moving_right() for example, from character class
+            # call character.moving_right() for example, from character class
             .
             .
             .
