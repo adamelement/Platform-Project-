@@ -1,5 +1,10 @@
 class InputHandler():
 
+    def __init__(self, character1, character2):
+        self.character1 = character1
+        self.character2 = character2
+
+
     """docstring on class"""
 
     # have an __init__() method where you pass in an instance of the character class so that you can reference its methods in the read() method 
@@ -32,24 +37,24 @@ class InputHandler():
         keys = pygame.key.get_pressed
 
         if keys[pygame.K_SPACE]:
-            global air_bound
-            if not air_bound:
-                character.jump()
-                air_bound = True
+            global airborn
+            if not airborn:
+                self.character1.jump()
+                airborn = True
                 double_jump = False
-            elif air_bound and not double_jump:
-                character.jump()
+            elif airborn and not double_jump:
+                self.character1.jump()
                 double_jump = True
 
         if keys[pygame.K_z]:
-            if not air_bound:
+            if not airborn:
                 if keys[pygame.K_RIGHT]:
                 elif keys[pygame.K_LEFT]:
                 elif keys[pygame.K_UP]:
                 elif keys[pygame.K_DOWN]:      
                 else:
 
-            if air_bound:
+            if airborn:
                 if keys[pygame.K_RIGHT]:
                 elif keys[pygame.K_LEFT]:
                 elif keys[pygame.K_UP]:
@@ -71,20 +76,20 @@ class InputHandler():
             else:
 
         if keys[pygame.K_LSHIFT]:
-            if air_bound:
-                character.dodge()
+            if airborn:
+                self.character1.dodge()
 
-            if not air_bound: 
-                character.shield()
+            if not airborn: 
+                self.character1.shield()
                 
                 if keys[pygame.K_RIGHT]:
                 elif keys[pygame.K_LEFT]:
                 elif keys[pygame.K_UP]:
                 elif keys[pygame.K_DOWN]:
                 elif keys[pygame.K_z]:
-                    character.grab()
+                    self.character1.grab()
 
         if keys[pygame.K_LCRTL]:
-            if not air_bound:
-                character.grab()
+            if not airborn:
+                self.character1.grab()
 
