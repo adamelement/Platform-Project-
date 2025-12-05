@@ -23,13 +23,19 @@ class Character: # should just have class Character - all that should go in init
         self.moving_right = False
 
     def movement_right(self):
-            if self.vx < self.max_speed:
-                self.moving_right = True
-                self.moving_left = False
-                horiz_acceleration = self.max_speed / 10
-                self.vx += horiz_acceleration
+        if self.vx < self.max_speed:
+            self.moving_right = True
+            self.moving_left = False
+            horiz_acceleration = self.max_speed / 10
+            self.vx += horiz_acceleration=
+       if self.rect.right > screen_width:
+            self.rect.right = screen_width
+            self.vx = 0.0
 
     def movement_left(self):
+        if self.rect.left < 0:
+            self.rect.left = 0
+            self.vx = 0.0
         if self.vx > self.max_speed:
             self.moving_left = True
             self.moving_right = False
@@ -66,16 +72,11 @@ class Character: # should just have class Character - all that should go in init
     def draw(self, surface):
         pygame.draw.rect(surface, self.colour, self.rect)
     
-    def update_location:
+    def update_location(self):
         self.rect.x += self.vx
         self.rect.y += self.vy
     
-    if self.rect.left < 0:
-        self.rect.left = 0
-        self.vx = 0.0
-    if self.rect.right > screen_width:
-        self.rect.right = screen_width
-        self.vx = 0.0
+
 
 
 
