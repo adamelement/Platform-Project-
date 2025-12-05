@@ -28,7 +28,7 @@ class Character: # should just have class Character - all that should go in init
             self.moving_left = False
             horiz_acceleration = self.max_speed / 10
             self.vx += horiz_acceleration
-       if self.rect.right > screen_width:
+        if self.rect.right > screen_width:
             self.rect.right = screen_width
             self.vx = 0.0
 
