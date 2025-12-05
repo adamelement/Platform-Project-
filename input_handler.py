@@ -48,32 +48,44 @@ class InputHandler():
 
         if keys[pygame.K_z]:
             if not airborn:
-                if keys[pygame.K_RIGHT]:
-                elif keys[pygame.K_LEFT]:
+                if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
+                    self.character1.f_tilt()
                 elif keys[pygame.K_UP]:
-                elif keys[pygame.K_DOWN]:      
+                    self.character1.up_tilt()
+                elif keys[pygame.K_DOWN]: 
+                    self.character1.down_tilt()     
                 else:
+                    self.character1.jab()
 
             if airborn:
                 if keys[pygame.K_RIGHT]:
+                    self.character1.fair()
                 elif keys[pygame.K_LEFT]:
+                    self.character1.bair()
                 elif keys[pygame.K_UP]:
-                elif keys[pygame.K_DOWN]:      
+                    self.character1.up_air()
+                elif keys[pygame.K_DOWN]:  
+                    self.character1.down_air()    
                 else:
+                    self.character1.nair()
 
         if keys[pygame.K_x]:
-            if keys[pygame.K_RIGHT]:
-            elif keys[pygame.K_LEFT]:
+            if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
+                self.character1.f_smash()
             elif keys[pygame.K_UP]:
-            elif keys[pygame.K_DOWN]:      
-            else:
+                self.character1.up_smash()
+            elif keys[pygame.K_DOWN]:   
+                self.character1.down_smash()   
 
         if keys[pygame.K_c]:
             if keys[pygame.K_RIGHT]:
-            elif keys[pygame.K_LEFT]:
+                self.character1.forward_special()
             elif keys[pygame.K_UP]:
-            elif keys[pygame.K_DOWN]:      
+                self.character1.up_special()
+            elif keys[pygame.K_DOWN]:   
+                self.character1.down_special()   
             else:
+                self.character1.neutral_special()
 
         if keys[pygame.K_LSHIFT]:
             if airborn:
@@ -83,9 +95,13 @@ class InputHandler():
                 self.character1.shield()
                 
                 if keys[pygame.K_RIGHT]:
+                    self.character1.dodge()
                 elif keys[pygame.K_LEFT]:
+                    self.character1.dodge()
                 elif keys[pygame.K_UP]:
+                    self.character1.dodge()
                 elif keys[pygame.K_DOWN]:
+                    self.character1.dodge()
                 elif keys[pygame.K_z]:
                     self.character1.grab()
 
