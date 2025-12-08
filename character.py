@@ -4,7 +4,7 @@ class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
     FRICTION       = 0.78 # adjust accordingly - the lower the value the faster the character stops - not the coefficient of friction! We should probably modify the name  
     
-    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed):
+    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge):
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
