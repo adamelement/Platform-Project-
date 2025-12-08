@@ -23,6 +23,8 @@ class Character: # should just have class Character - all that should go in init
         self.moving_right = False
 
     def movement_right(self):
+        if airborne == False:
+            character_dirrection == right
         if self.vx < self.max_speed:
             self.moving_right = True
             self.moving_left = False
@@ -33,14 +35,16 @@ class Character: # should just have class Character - all that should go in init
             self.vx = 0.0
 
     def movement_left(self):
-        if self.rect.left < 0:
-            self.rect.left = 0
-            self.vx = 0.0
+        if airborne == False:
+            character_dirrection == left
         if self.vx > self.max_speed:
             self.moving_left = True
             self.moving_right = False
             horiz_acceleration = self.max_speed / 10
             self.vx -= horiz_acceleration
+        if self.rect.left < 0:
+            self.rect.left = 0
+            self.vx = 0.0
     
     def stop(self):
         self.vx = 0
