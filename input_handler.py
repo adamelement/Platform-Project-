@@ -59,9 +59,15 @@ class InputHandler():
 
             if airborn:
                 if keys[pygame.K_RIGHT]:
-                    self.character1.fair()
+                    if character_dirrection == right:
+                        self.character1.fair()
+                    if character_dirrection == left:
+                        self.character1.bair()
                 elif keys[pygame.K_LEFT]:
-                    self.character1.bair()
+                    if character_dirrection == left:
+                        self.character1.fair()
+                    if character_dirrection == right:
+                        self.character1.bair()
                 elif keys[pygame.K_UP]:
                     self.character1.up_air()
                 elif keys[pygame.K_DOWN]:  
@@ -89,7 +95,7 @@ class InputHandler():
 
         if keys[pygame.K_LSHIFT]:
             if airborn:
-                self.character1.dodge()
+                self.character1.airdodge()
 
             if not airborn: 
                 self.character1.shield()
