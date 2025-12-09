@@ -7,12 +7,12 @@
 
 marshal_dash_frames = []
 for i in range (1,11):
-    image = pygame.image.load(f'Marshal_dash{i}.png').convert_alpha()
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_dash{i}.png').convert_alpha()
     marshal_dash_frames.append(image)
 
 marshal_airidle = []
 for i in range(1,32)
-    image = pygame.image.load(f'Marshal_Airidle{i}.png').convert_alpha()
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_AirIdle/Marshal_Airidle{i}.png').convert_alpha()
     marshal_airidle.append(image)
 
 marshal = Character( 31 , 1.8 , 95, 3, 4, 6  ) # we will probably create character objects in the game class, so this is not needed here  
