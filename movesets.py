@@ -11,7 +11,7 @@ for i in range (1,11):
     marshal_dash_frames.append(image)
 
 marshal_airidle = []
-for i in range(1,32)
+for i in range(1,32):
     image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_AirIdle/Marshal_Airidle{i}.png').convert_alpha()
     marshal_airidle.append(image)
 
