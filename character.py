@@ -91,7 +91,9 @@ marshal = Character( 31 , 1.8 , 95, 3, 4, 6  ) # we will probably create charact
     
 
 # this should go in the moveset.py file so as to not clutter this character class, which is already going to be big enough 
-
+# hitbox [[length, width, (x relative to player, y relative to player)], [second hitbox stats] ]
+marshall_hitbox = for i in marshals_moves[current_move][hitbox]:
+    pygame.Rect(marshals_moves[current_move]['hitbox'])
 marshals_moves = {'ftilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'jab' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'up_tilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
