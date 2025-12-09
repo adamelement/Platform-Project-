@@ -116,5 +116,5 @@ marshals_moves = {'ftilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , '
                      'forward_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'attack_getup' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'ledge_attack' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'airddoge' : {'damage' : 0, 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' :  , 'startup' : 0, 'endlag': 49}
+                     'airddoge' : {'damage' : 0, 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' :  , 'startup' : 3, 'endlag': 49}
 
