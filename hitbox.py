@@ -1,5 +1,5 @@
 class Hitbox:
-    def __init__(self, hitbox_dimensions):
+    def __init__(self, knock_back, launch_angle):
         self.character_direction = character_direction
         self.hitbox_dimensions = hitbox_dimensions
 

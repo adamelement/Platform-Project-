@@ -22,7 +22,7 @@ marshal = Character( 31 , 1.8 , 95, 3, 4, 6  ) # we will probably create charact
 # hitbox [[length, width, (x relative to player, y relative to player)], [second hitbox stats] ]
 character_hitbox = for i in character_moveset[current_move][hitbox]:
     pygame.Rect(character_moveset[current_move]['hitbox'])
-marshals_moves = {'ftilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
+marshals_moves = {'f_tilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'jab' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'up_tilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
                      'down_tilt' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
@@ -46,4 +46,4 @@ marshals_moves = {'ftilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , '
                      'forward_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'attack_getup' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
                      'ledge_attack' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'airddoge' : {'damage' : 0, 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' :  , 'startup' : 3, 'endlag': 49}
+                     'airddoge' : {'damage' : 0, 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' :  , 'startup' : 3, 'endlag': 49} }

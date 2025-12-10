@@ -79,6 +79,10 @@ class Character: # should just have class Character - all that should go in init
     def update_location(self):
         self.rect.x += self.vx
         self.rect.y += self.vy
+
+    def f_tilt():
+        for dimensions in marshal_moveset ['f_tilt'] ['hitbox']
+        hitbox = Hitbox(marshal_moveset['f_tilt'])
     
 
 
