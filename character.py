@@ -4,7 +4,7 @@ class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
     FRICTION       = 0.78 # adjust accordingly - the lower the value the faster the character stops - not the coefficient of friction! We should probably modify the name  
     
-    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge):
+    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge, hitboxes):
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
@@ -12,6 +12,7 @@ class Character: # should just have class Character - all that should go in init
         self.direction = direction
         self.max_speed = max_speed
         self.percent = percent
+        self.hitboxes = hitboxes
 
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
         self.colour = (255, 255, 255) # colour for drawing; not needed once we use sprites
@@ -81,11 +82,11 @@ class Character: # should just have class Character - all that should go in init
         self.rect.x += self.vx
         self.rect.y += self.vy
 
-    def f_tilt():
-        hitboxes = []
+    def f_tilt(self):
+        self.hitboxes = []
         launch_angle, knockback = marshal_moveset ['ftilt'] ['launch_angle'], marshal_moveset ['ftilt'] ['knock_back']
         for dimensions in marshal_moveset ['f_tilt'] ['hitbox']:
-            hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
+            self.hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
         
     
 
