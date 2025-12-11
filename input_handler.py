@@ -32,7 +32,7 @@ class InputHandler():
 
     
 
-    def read(): 
+    def read(self): 
 
         keys = pygame.key.get_pressed
 

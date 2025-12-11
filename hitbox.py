@@ -1,7 +1,8 @@
 class Hitbox:
-    def __init__(self, knock_back, launch_angle):
-        self.character_direction = character_direction
-        self.hitbox_dimensions = hitbox_dimensions
+    def __init__(self, dimensions, knockback, launch_angle):
+        self.dimensions = dimensions
+        self.knockback = knockback
+        self.launch_angle = launch_angle
 
     def attack_hitbox(self):
         direction = Character.character_direction
