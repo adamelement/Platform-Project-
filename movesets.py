@@ -1,4 +1,7 @@
-(((((p / 10 + (p * d) / 20) * 200 / (w +10 ) * 1.4) + 18) * s) + b) * r
+
+
+
+(((((percent / 10 + (percent * damage) / 20) * 200 / (weight +10 ) * 1.4) + 18) * knockback_scaling) + knock_back) * r
 
 
 
