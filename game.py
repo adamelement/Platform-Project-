@@ -97,3 +97,10 @@ class Game:
 
 
         pygame.display.flip()
+    
+    def collide_check(self):
+        player1_attack = self.player1.hitboxes
+        for boxes in player1_attack:
+            if boxes.colliderect(player2):
+                
+
