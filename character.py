@@ -11,6 +11,7 @@ class Character: # should just have class Character - all that should go in init
         self.lives = lives
         self.direction = direction
         self.max_speed = max_speed
+        self.percent = percent
 
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
         self.colour = (255, 255, 255) # colour for drawing; not needed once we use sprites
