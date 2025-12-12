@@ -99,8 +99,9 @@ class Game:
 
         self.window.blit(self.player1.current_image, self.player1.x, self.player1.y) # double check to make sure attributes are defined that way and repeat for p2
 
-
         pygame.display.flip()
+
+        # fill the screen with black ink 
     
     def collide_check(self):
         player1_attack = self.player1.hitboxes
