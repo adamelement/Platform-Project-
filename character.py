@@ -4,7 +4,7 @@ class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
     FRICTION       = 0.78 # adjust accordingly - the lower the value the faster the character stops - not the coefficient of friction! We should probably modify the name  
     
-    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge, hitboxes):
+    def __init__(self, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge, hitboxes, moveset):
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
@@ -12,8 +12,9 @@ class Character: # should just have class Character - all that should go in init
         self.direction = direction
         self.max_speed = max_speed
         self.percent = percent
-        self.hitboxes = hitboxes
-
+        self.moveset = moveset
+        
+        self.hitboxes = []
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
         self.colour = (255, 255, 255) # colour for drawing; not needed once we use sprites
 
