@@ -4,6 +4,7 @@
 
 import sys
 import pygame
+import math
 
 from constants import (
     SCREEN_WIDTH,
@@ -100,17 +101,28 @@ class Game:
     
     def collide_check(self):
         player1_attack = self.player1.hitboxes
-        player1_launch_angle = self.player1.hitboxes[0][2]
+        player1_launch_angle = self.player2.hitboxes[0][2]
         player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage
+        player1_x_displacement = player1_knockback * math.cos(player1_launch_angle * math.pi / 180)
+        player1_y_displacement = player1_knockback * math.sin(player1_launch_angle * math.pi / 180)
         
         player2_attack = self.player2.hitboxes
-        player2_launch_angle = self.player2.hitboxes[0][2]
+        player2_launch_angle = self.player1.hitboxes[0][2]
         player2_knockback = self.player1.hitboxes[0][1] + self.player2.percentage
+        player2_x_displacement = player2_knockback * math.cos(player1_launch_angle * math.pi / 180)
+        player2_x_displacement = player2_knockback * math.sin(player1_launch_angle * math.pi / 180)
         
         for boxes in player1_attack:
             if boxes.colliderect(self.player2.rect):
+                self.player2.take_hit(player2_x_displacement, plahyer2_y_displacement)
+                break
 
         for boxes in player2_attack:
             if boxes.colliderect(self.player1.rect):
+                self.player1.take_hit(player1_x_displacement, player1_y_displacement)
+                break
+        
+        self.player1.hitboxes.clear()
+        self.player2.hitboxes.clear()
 
 
