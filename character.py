@@ -14,7 +14,8 @@ class Character: # should just have class Character - all that should go in init
         self.percent = percent
         self.moveset = moveset
 
-        self.current_frame = 0
+        self.current_image = None 
+        self.current_frame_index = 0
         self.images = []
         self.hitboxes = []
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
@@ -94,12 +95,14 @@ class Character: # should just have class Character - all that should go in init
 
     def animation(self, animation_type):
         #self.images =  use animation_type to retrieve the list of images from the moveset dictionary
-        current_image = self.images[frame_index]
-        frame_index = (frame_index + 1) % len(self.images)
-        if frame_index == 20: # or whichever number to represent the attack
-            frame_index = 0
-            self.images = # set to default movement 
-            break 
+        self.current_image = self.images[self.frame_index]
+        self.frame_index = (self.frame_index + 1) % len(self.images)
+        if self.frame_index > 8:
+            if self.frame_index == len(self.images) - 1: 
+                # or whichever number to represent the attack
+                self.frame_index = 0
+                self.images = # set to default movement 
+                break 
         
     
 
