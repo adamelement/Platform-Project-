@@ -85,8 +85,8 @@ class Character: # should just have class Character - all that should go in init
 
     def f_tilt(self):
         self.hitboxes = []
-        launch_angle, knockback = marshal_moveset ['ftilt'] ['launch_angle'], marshal_moveset ['ftilt'] ['knock_back']
-        for dimensions in marshal_moveset ['f_tilt'] ['hitbox']:
+        launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back']
+        for dimensions in moveset['f_tilt']['hitbox']:
             self.hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
         
     
