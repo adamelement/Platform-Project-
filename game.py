@@ -100,7 +100,13 @@ class Game:
     
     def collide_check(self):
         player1_attack = self.player1.hitboxes
+        player1_launch_angle = self.player1.hitboxes[0][2]
+        player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage
+        
         player2_attack = self.player2.hitboxes
+        player2_launch_angle = self.player2.hitboxes[0][2]
+        player2_knockback = self.player1.hitboxes[0][1] + self.player2.percentage
+        
         for boxes in player1_attack:
             if boxes.colliderect(self.player2.rect):
 
