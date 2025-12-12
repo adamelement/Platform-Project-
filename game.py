@@ -34,7 +34,7 @@ class Game:
     - Handle attack hitboxes and knockback
     - Draw everything each frame
     """
-    moveset = {'f_tilt': {'hitboxes': [(100,100,50,50), (200, 200, 100, 100)], 'launch_angle': 45, 'knock_back': 20}}
+    # moveset = {'f_tilt': {'hitboxes': [(100,100,50,50), (200, 200, 100, 100)], 'launch_angle': 45, 'knock_back': 20}}
     def __init__(self):
         pygame.init()
 
