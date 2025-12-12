@@ -85,11 +85,21 @@ class Character: # should just have class Character - all that should go in init
         self.rect.x += self.vx
         self.rect.y += self.vy
 
-    def f_tilt(self): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
+    def f_tilt(self, attack_type): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
         self.hitboxes = []
         launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back'] # instead of ftilt, use the flag variable
         for dimensions in moveset['f_tilt']['hitbox']:
             self.hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
+
+
+    def animation(self, animation_type):
+        #self.images =  use animation_type to retrieve the list of images from the moveset dictionary
+        current_image = self.images[frame_index]
+        frame_index = (frame_index + 1) % len(self.images)
+        if frame_index == 20: # or whichever number to represent the attack
+            frame_index = 0
+            self.images = # set to default movement 
+            break 
         
     
 
