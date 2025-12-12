@@ -69,6 +69,7 @@ class Game:
             self.player1_input.read()
             self.player2_input.read()
             self.update()
+            self.collide_check()
             self.draw()
 
         pygame.quit()
