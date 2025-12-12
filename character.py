@@ -86,6 +86,10 @@ class Character: # should just have class Character - all that should go in init
         self.rect.x += self.vx
         self.rect.y += self.vy
 
+    def take_hit(self, x, y):
+        self.rect.x += x
+        self.rect.y += y
+
     def f_tilt(self, attack_type): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
         self.hitboxes = []
         launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back'] # instead of ftilt, use the flag variable
