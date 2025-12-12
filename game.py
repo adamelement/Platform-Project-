@@ -105,7 +105,7 @@ class Game:
     def collide_check(self):
         player1_attack = self.player1.hitboxes
         player1_launch_angle = self.player2.hitboxes[0][2]
-        player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage
+        player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage # or formula for knockback 
         player1_x_displacement = player1_knockback * math.cos(player1_launch_angle * math.pi / 180)
         player1_y_displacement = player1_knockback * math.sin(player1_launch_angle * math.pi / 180)
         
