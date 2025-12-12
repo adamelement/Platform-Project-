@@ -117,7 +117,7 @@ class Game:
         
         for boxes in player1_attack:
             if boxes.colliderect(self.player2.rect):
-                self.player2.take_hit(player2_x_displacement, plahyer2_y_displacement)
+                self.player2.take_hit(player2_x_displacement, player2_y_displacement)
                 break
 
         for boxes in player2_attack:
