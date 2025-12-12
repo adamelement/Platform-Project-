@@ -14,6 +14,7 @@ class Character: # should just have class Character - all that should go in init
         self.percent = percent
         self.moveset = moveset
 
+        self.current_frame = 0
         self.images = []
         self.hitboxes = []
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
