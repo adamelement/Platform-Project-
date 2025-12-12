@@ -13,7 +13,8 @@ class Character: # should just have class Character - all that should go in init
         self.max_speed = max_speed
         self.percent = percent
         self.moveset = moveset
-        
+
+        self.images = []
         self.hitboxes = []
         self.rect = pygame.Rect(x, y, 40, 60) # to make contact detection easy 
         self.colour = (255, 255, 255) # colour for drawing; not needed once we use sprites
@@ -83,9 +84,9 @@ class Character: # should just have class Character - all that should go in init
         self.rect.x += self.vx
         self.rect.y += self.vy
 
-    def f_tilt(self):
+    def f_tilt(self): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
         self.hitboxes = []
-        launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back']
+        launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back'] # instead of ftilt, use the flag variable
         for dimensions in moveset['f_tilt']['hitbox']:
             self.hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
         
