@@ -112,55 +112,61 @@ class InputHandler():
 
             buttons = pygame.button.get_pressed()
             button_count = sum(buttons)
-            if buttons[pygame.K_LEFT] and buttons == 1: #makes sure that moving is the only input being performed
-                character2.moving_left()
-            if buttons[pygame.K_RIGHT] and buttons == 1: 
-                character2.moving_right()
+            axis_x = joystick.get_axis(0)
+            axis_y = joystick.get_axis(1)
+            deadzone = 0.2 
+            
+            if axis_x > deadzone and buttons = 0: 
+                character.moving_right
+            elif axis_x < -deadzone: 
+                character.moving_left
+
+                
 
             
             if event.button == 0: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
                     global char2_airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
                     if not char2_airborn:
-                        self.character2.jump()
+                        self.character.jump()
                         char2_airborn = True
                         char2_double_jump = False
                     elif char2_airborn and not char2_double_jump:
-                        self.character2.jump()
+                        self.character.jump()
                         char2_double_jump = True
             if event.button == 2:
                 if not char2_airborn:
-                        if button[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
-                            self.character2.f_tilt()
-                        elif keys[pygame.K_UP]:
-                            self.character2.up_tilt()
-                        elif keys[pygame.K_DOWN]: 
-                            self.character2.down_tilt()     
-                        else:
-                            self.character2.jab()
+                    if axis_x > 0.2 or < 0.2
+                        self.character2.f_tilt()
+                    if axis_y < 0.2
+                        self.character2.up_tilt()
+                    if axis_y > -0.2
+                        self.character2.down_tilt()    
+                else:
+                        self.character2.jab()
 
-
+            if airborn:
+                if axis_x > deadzone:
+                    if character2_dirrection == right:
+                        self.character.fair()
+                    if character2_dirrection == left:
+                        self.character.bair()
+                elif axis_x < deadzone:
+                    if character2_dirrection == left:
+                        self.character.fair()
+                    if character2_dirrection == right:
+                        self.character.bair()
+                elif axis_y > deadzone:
+                    self.character.up_air()
+                elif axis_y < deadzone:  
+                    self.character.down_air()    
+                else:
+                    self.character.nair()
                     
 
         
-                    if airborn:
-                        if keys[pygame.K_RIGHT]:
-                            if character_dirrection == right:
-                                self.character1.fair()
-                            if character_dirrection == left:
-                                self.character1.bair()
-                        elif keys[pygame.K_LEFT]:
-                            if character_dirrection == left:
-                                self.character1.fair()
-                            if character_dirrection == right:
-                                self.character1.bair()
-                        elif keys[pygame.K_UP]:
-                            self.character1.up_air()
-                        elif keys[pygame.K_DOWN]:  
-                            self.character1.down_air()    
-                        else:
-                            self.character1.nair()
+                    
         
-                if keys[pygame.K_x]:
+                '''if keys[pygame.K_x]:
                     if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
                         self.character1.f_smash()
                     elif keys[pygame.K_UP]:
@@ -202,6 +208,6 @@ class InputHandler():
         
                 if keys[pygame.K_LCRTL]:
                     if not airborn:
-                        self.character1.grab()
+                        self.character1.grab()'''
         
     
