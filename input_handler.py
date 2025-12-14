@@ -1,3 +1,5 @@
+import pygame
+
 class InputHandler():
 
     def __init__(self, character1, character2):

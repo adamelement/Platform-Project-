@@ -1,4 +1,5 @@
 import time
+import pygame
 
 class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
