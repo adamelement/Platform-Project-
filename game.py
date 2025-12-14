@@ -48,12 +48,11 @@ class Game:
         self.stage = Stage()
 
         # Two fighting characters 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset, isright = True)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset, isright = False)
 
         # Input handling objects for both characters 
-        self.player1_input = InputHandler(player=1)
-        self.player2_input = InputHandler(player=2)
+        self.input = InputHandler(self.player1, self.player2)
 
         # Attack hitboxes (spawned when attacking) 
       

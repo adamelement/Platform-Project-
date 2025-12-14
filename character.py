@@ -5,17 +5,18 @@ class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
     FRICTION       = 0.78 # adjust accordingly - the lower the value the faster the character stops - not the coefficient of friction! We should probably modify the name  
     
-    def __init__(self, x, y, jump_height, movement_speed, weight, lives, direction, max_speed, airdodge, moveset): # fix airdodge
+    def __init__(self, x, y, jump_height, movement_speed, weight, lives, max_speed, moveset, percent, facing_right): # fix airdodge
         self.x = x
         self.y = y
         self.jump_height = jump_height
         self.movement_speed = movement_speed
         self.weight = weight
         self.lives = lives
-        self.direction = direction
         self.max_speed = max_speed
         self.percent = percent
         self.moveset = moveset
+        self.facing_right = facing_right
+        self.airborn = airborn
 
         self.current_image = None 
         self.current_frame_index = 0
@@ -34,7 +35,7 @@ class Character: # should just have class Character - all that should go in init
 
     def movement_right(self):
         if airborne == False:
-            character_direction == right
+            facing_right = True
         if self.vx < self.max_speed:
             self.moving_right = True
             self.moving_left = False
@@ -46,7 +47,7 @@ class Character: # should just have class Character - all that should go in init
 
     def movement_left(self):
         if airborne == False:
-            character_dirrection == left
+            facing_right = false
         if self.vx > self.max_speed:
             self.moving_left = True
             self.moving_right = False
