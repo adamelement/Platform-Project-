@@ -95,7 +95,7 @@ class Character: # should just have class Character - all that should go in init
         self.hitboxes = []
         launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back'] # instead of ftilt, use the flag variable
         for dimensions in moveset['f_tilt']['hitbox']:
-            self.hitboxes.append[Hitbox(dimensions, knockback, launch_angle)]
+            self.hitboxes.append(Hitbox(dimensions, knockback, launch_angle))
 
 
     def animation(self, animation_type):
