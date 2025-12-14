@@ -76,6 +76,33 @@ class InputHandler():
             else:
                 self.character1.neutral_special()
 
+            """Sullivan in case you're working on this file - I sent this and it probably applies to you too:
+
+    Yeah right now the input handler is detecting input and then deciding which specific character method to call. 
+    On Friday we talked about simplifying this - maybe just having one attack method that is called with 
+    different arguments passed in based on the keys pressed.  That would be a cleaner design. 
+    So for example. rather than what you see above, we'd do the following:
+
+    if keys[pygame.K_c]:
+    if keys[pygame.K_RIGHT]:
+        attack_id = "forward_special"   # must correspond to a key from the moveset dictionary  
+    elif keys[pygame.K_UP]:
+        attack_id = "up_special"
+    elif keys[pygame.K_DOWN]:
+        attack_id = "down_special"
+    else:
+        attack_id = "neutral_s"
+
+    self.character1.attack(attack_id)  
+
+This argument MUST have the same name as the attack key from the moveset dictionary.  If you want the character to be locked in certain moments, 
+so unable to make attacks based on things, then maybe this method should be called try_attack(), which then checks whether an attack can take place and if so calls the actual attack method 
+all that logic should be in the character class, and there's a variety of ways to go about it. 
+I'll let you, Sullivan, and the programmer in game design come up with that - it's a good challenge. 
+Let me know what approach you all decide to take for that, and if there are any struggles or questions along the way.  
+
+"""
+
         if keys[pygame.K_LSHIFT]:
             if airborn:
                 self.character1.airdodge()
