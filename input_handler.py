@@ -13,7 +13,7 @@ class InputHandler():
     def read(self): 
 
         keys = pygame.key.get_pressed()
-        pressed count = sum(keys)
+        pressed_count = sum(keys)
         if keys[pygame.K_LEFT] and keys == 1: #makes sure that moving is the only input being performed
             character.moving_left()
         if keys[pygame.K_RIGHT] and keys == 1: 
@@ -109,6 +109,14 @@ class InputHandler():
     controller.init() # initializes the controller
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
+
+            buttons = pygame.button.get_pressed()
+            button_count = sum(buttons)
+            if buttons[pygame.K_LEFT] and buttons == 1: #makes sure that moving is the only input being performed
+                character2.moving_left()
+            if buttons[pygame.K_RIGHT] and buttons == 1: 
+                character2.moving_right()
+
             
             if event.button == 0: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
                     global char2_airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
@@ -118,21 +126,21 @@ class InputHandler():
                         char2_double_jump = False
                     elif char2_airborn and not char2_double_jump:
                         self.character2.jump()
-                        double_jump = True
-            if joystick:
-                
+                        char2_double_jump = True
+            if event.button == 2:
+                if not char2_airborn:
+                        if button[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
+                            self.character2.f_tilt()
+                        elif keys[pygame.K_UP]:
+                            self.character2.up_tilt()
+                        elif keys[pygame.K_DOWN]: 
+                            self.character2.down_tilt()     
+                        else:
+                            self.character2.jab()
 
 
                     
-                    if not char2_airborn:
-                        if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
-                            self.character1.f_tilt()
-                        elif keys[pygame.K_UP]:
-                            self.character1.up_tilt()
-                        elif keys[pygame.K_DOWN]: 
-                            self.character1.down_tilt()     
-                        else:
-                            self.character1.jab()
+
         
                     if airborn:
                         if keys[pygame.K_RIGHT]:
