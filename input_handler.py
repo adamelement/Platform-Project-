@@ -5,36 +5,19 @@ class InputHandler():
         self.character2 = character2
 
 
-    """docstring on class"""
-
-    # have an __init__() method where you pass in an instance of the character class so that you can reference its methods in the read() method 
 
     
-    """Consider having a general read() method checking the keys pressed once and then calling the appropriate method. For example:
-   
-    def read(self):
-    
-        keys = pygame.key.get_pressed()
-    
-        if keys[pygame.K_LEFT]:
-            #call appropriate methof from character class - character.moving_left() method, maybe
-        if keys[pygame.K_RIGHT]:
-            # call character.moving_right() for example, from character class
-            .
-            .
-            .
 
-    If there's a controller too, read can be changed to just detect whether there's a controller, in which case it will call a read_controller method, otherwise it will call a read_keyboard method which is the read() method above
 
-    
-        
-    """
-
-    
 
     def read(self): 
 
-        keys = pygame.key.get_pressed
+        keys = pygame.key.get_pressed()
+        pressed count = sum(keys)
+        if keys[pygame.K_LEFT] and keys == 1: #makes sure that moving is the only input being performed
+            character.moving_left()
+        if keys[pygame.K_RIGHT] and keys == 1: 
+            character.moving_right()
 
         if keys[pygame.K_SPACE]:
             global airborn
@@ -126,6 +109,7 @@ class InputHandler():
     controller.init() # initializes the controller
     for event in pygame.event.get():
         if event.type == pygame.JOYBUTTONDOWN:
+            
             if event.button == 0: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
                     global char2_airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
                     if not char2_airborn:
