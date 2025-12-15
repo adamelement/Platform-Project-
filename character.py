@@ -34,7 +34,7 @@ class Character: # should just have class Character - all that should go in init
         self.moving_right = False
 
     def movement_right(self):
-        if airborne == False:
+        if airborn == False:
             facing_right = True
         if self.vx < self.max_speed:
             self.moving_right = True
@@ -46,8 +46,8 @@ class Character: # should just have class Character - all that should go in init
             self.vx = 0.0
 
     def movement_left(self):
-        if airborne == False:
-            facing_right = false
+        if airborn == False:
+            facing_right = False
         if self.vx > self.max_speed:
             self.moving_left = True
             self.moving_right = False
@@ -95,10 +95,10 @@ class Character: # should just have class Character - all that should go in init
         self.rect.x += x
         self.rect.y += y
 
-    def f_tilt(self, attack_type): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
+    def attack(self, attack_type): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
         self.hitboxes = []
-        launch_angle, knockback = moveset['ftilt']['launch_angle'], moveset['ftilt']['knock_back'] # instead of ftilt, use the flag variable
-        for dimensions in moveset['f_tilt']['hitbox']:
+        launch_angle, knockback = moveset[attack_type]['launch_angle'], moveset[attack_type]['knock_back'] # instead of ftilt, use the flag variable
+        for dimensions in moveset[attack_type]['hitbox']:
             self.hitboxes.append(Hitbox(dimensions, knockback, launch_angle))
 
 

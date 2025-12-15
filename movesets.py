@@ -5,8 +5,24 @@ import pygame
 
 
 
-1 + ((p - 35 )(115)0.1)
+1 + (p - 35 )(115)*0.1
 
+marshal_up_tilt = []
+for i in range (1,22):
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_up_tilt{i}.png').convert_alpha()
+    marshal_up_tilt.append(image)
+    marshal_up_tilt = []
+
+marshal_d_tilt = []
+for i in range (1,12):
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_d_tilt{i}.png').convert_alpha()
+    marshal_up_tilt.append(image)
+    marshal_up_tilt = []
+
+marshal_f_tilt = []
+for i in range (1,20):
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_f_tilt{i}.png').convert_alpha()
+    marshal_up_tilt.append(image)
 
 marshal_dash_frames = []
 for i in range (1,11):
@@ -18,13 +34,11 @@ for i in range(1,32):
     image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_AirIdle/Marshal_Airidle{i}.png').convert_alpha()
     marshal_airidle.append(image)
 
-marshal = Character( 31 , 1.8 , 95, 3, 4, 6  ) # we will probably create character objects in the game class, so this is not needed here  
+ # we will probably create character objects in the game class, so this is not needed here  
     
 
 # this should go in the moveset.py file so as to not clutter this character class, which is already going to be big enough 
 # hitbox [[length, width, (x relative to player, y relative to player)], [second hitbox stats] ]
-character_hitbox = for i in character_moveset[current_move][hitbox]:
-    pygame.Rect(character_moveset[current_move]['hitbox'])
 
 class character_moveset:
     def __init__(self, damage, knockback, launch_angle, knockback_scaling, invincibility, hitbox, startup, endlag):
