@@ -16,9 +16,9 @@ class InputHandler():
 
         keys = pygame.key.get_pressed()
         pressed_count = sum(keys)
-        if keys[pygame.K_a] and keys == 1: #makes sure that moving is the only input being performed
+        if keys[pygame.K_a] and pressed_count == 1: #makes sure that moving is the only input being performed
             self.character1.moving_left()
-        if keys[pygame.K_d] and keys == 1: 
+        if keys[pygame.K_d] and pressed_count == 1: 
             self.character1.moving_right()
 
         if keys[pygame.K_q]:
@@ -35,66 +35,48 @@ class InputHandler():
             if not airborn:
                 if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
                     attack = 'f_tilt'
-                    self.character1.attack(attack)
                 elif keys[pygame.K_w]:
                     attack = 'up_tilt'
-                    self.character1.attack(attack)
                 elif keys[pygame.K_s]: 
                     attack = 'down_tilt' 
-                    self.character1.attack(attack)  
                 else:
                     attack = 'jab'
-                    self.character1.attack(attack)
 
             if airborn:
                 if keys[pygame.K_d]:
                     if character_dirrection == right:
                         attack = 'fair'
-                        self.character1.attack(attack)
                     if character_dirrection == left:
                         attack = 'bair'
-                        self.character1.attack(attack)
                 elif keys[pygame.K_a]:
                     if character_dirrection == left:
                         attack = 'fair'
-                        self.character1.attack(attack)
                     if character_dirrection == right:
                         attack = 'bair'
-                        self.character1.attack(attack)
                 elif keys[pygame.K_w]:
                     attack = 'up_air'
-                    self.character1.attack(attack)
                 elif keys[pygame.K_s]:  
                     attack = 'down_air' 
-                    self.character1.attack(attack) 
                 else:
                     attack = 'nair'
-                    self.character1.attack(attack)
 
         if keys[pygame.K_x]:
             if keys[pygame.K_d] or keys[pygame.K_a]:
                 attack = 'f_smash'
-                self.character1.attack(attack)
             elif keys[pygame.K_w]:
                 attack = 'up_smash'
-                self.character1.attack(attack)
             elif keys[pygame.K_s]:   
                 attack = 'down_smash'
-                self.character1.attack(attack)
 
         if keys[pygame.K_c]:
             if keys[pygame.K_d]:
                 attack = 'side_b'
-                self.character1.attack(attack)
             elif keys[pygame.K_w]:
                 attack = 'up_b'
-                self.character1.attack(attack)
             elif keys[pygame.K_s]:   
                 attack = 'down_b'
-                self.character1.attack(attack)
             else:
                 attack = 'neutral_b'
-                self.character1.attack(attack)
 
             """Sullivan in case you're working on this file - I sent this and it probably applies to you too:
 
