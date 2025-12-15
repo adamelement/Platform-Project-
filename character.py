@@ -99,6 +99,7 @@ class Character: # should just have class Character - all that should go in init
         self.hitboxes = []
         launch_angle, knockback = moveset[attack_type]['launch_angle'], moveset[attack_type]['knock_back'] # instead of ftilt, use the flag variable
         for dimensions in moveset[attack_type]['hitbox']:
+            dimensions += [self.x, self.y, 0, 0]  
             self.hitboxes.append(Hitbox(dimensions, knockback, launch_angle))
 
 
