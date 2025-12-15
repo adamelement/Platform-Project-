@@ -240,14 +240,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.character2.shield()
                 
                 if keys[pygame.K_l]:
-                    if character_dirrection == right:
+                    if character_direction == right:
                         self.character2.f_roll()
-                    if character_dirrection == left:
+                    if character_direction == left:
                         self.character2.r_roll()
                 elif keys[pygame.K_j]:
-                    if character_dirrection == right:
+                    if character_direction == right:
                         self.character2.b_roll()
-                    if character_dirrection == left:
+                    if character_direction == left:
                         self.character2.f_roll()
                 elif keys[pygame.K_k]:
                     self.character2.spotdodge()
