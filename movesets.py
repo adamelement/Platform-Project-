@@ -37,7 +37,7 @@ class character_moveset:
         self.startup = startup
         self.endlag = endlag
 #move name = character_moveset(damage, base knockback, launch angle in degrees, knockback scaling multiplier, invuln, hitbox location, startup, endlag)
-f_tilt = character_moveset(12, 200, 60, 1.25, 0, '''blank for now''', 7, 22 )
+f_tilt = character_moveset(12, 200, 60, 1.25, 0, '''blank for now''', 7, 15 )
 down_tilt = character_moveset(5, 10, 80, 0.2, 0, '''blank for now''', 4, 12, )
 up_tilt = character_moveset(8.5, 75, 10, 0.6, 0, '''blank for now''', 6, 15) 
 nair = character_moveset(9.5, 90, 45, 1, 0, '''blank for now''', 5, 20)
