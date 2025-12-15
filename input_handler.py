@@ -48,17 +48,17 @@ class InputHandler():
 
             if airborn:
                 if keys[pygame.K_d]:
-                    if character_direction == right:
+                    if character_dirrection == right:
                         attack = 'fair'
                         self.character1.attack(attack)
-                    if character_direction == left:
+                    if character_dirrection == left:
                         attack = 'bair'
                         self.character1.attack(attack)
                 elif keys[pygame.K_a]:
-                    if character_direction == left:
+                    if character_dirrection == left:
                         attack = 'fair'
                         self.character1.attack(attack)
-                    if character_direction == right:
+                    if character_dirrection == right:
                         attack = 'bair'
                         self.character1.attack(attack)
                 elif keys[pygame.K_w]:
