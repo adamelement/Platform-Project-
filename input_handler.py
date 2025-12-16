@@ -2,8 +2,9 @@ import pygame
 
 class InputHandler():
 
-    def __init__(self):
-
+    def __init__(self, character1, character2):
+        self.character1 = character1
+        self.character2 = character2
 
 
 
@@ -16,18 +17,18 @@ class InputHandler():
         keys = pygame.key.get_pressed()
         pressed_count = sum(keys)
         if keys[pygame.K_a] and pressed_count == 1: #makes sure that moving is the only input being performed
-            self.player1.moving_left()
+            self.character1.moving_left()
         if keys[pygame.K_d] and pressed_count == 1: 
-            self.player1.moving_right()
+            self.character1.moving_right()
 
         if keys[pygame.K_q]:
             global airborn
             if not airborn:
-                self.player1.jump()
+                self.character1.jump()
                 airborn = True
                 double_jump = False
             elif airborn and not double_jump:
-                self.player1.jump()
+                self.character1.jump()
                 double_jump = True
 
         if keys[pygame.K_z]:
@@ -43,14 +44,14 @@ class InputHandler():
 
             if airborn:
                 if keys[pygame.K_d]:
-                    if character_dirrection == 'right':
+                    if facing_right:
                         attack = 'fair'
-                    if character_dirrection == 'left':
+                    if not facing_right:
                         attack = 'bair'
                 elif keys[pygame.K_a]:
-                    if character_dirrection == 'left':
+                    if not facing_right:
                         attack = 'fair'
-                    if character_dirrection == 'right':
+                    if facing_right:
                         attack = 'bair'
                 elif keys[pygame.K_w]:
                     attack = 'up_air'
@@ -94,7 +95,7 @@ class InputHandler():
     else:
         attack_id = "neutral_s"
 
-    self.player1.attack(attack_id)  
+    self.character1.attack(attack_id)  
 
 This argument MUST have the same name as the attack key from the moveset dictionary.  If you want the character to be locked in certain moments, 
 so unable to make attacks based on things, then maybe this method should be called try_attack(), which then checks whether an attack can take place and if so calls the actual attack method 
@@ -106,26 +107,26 @@ Let me know what approach you all decide to take for that, and if there are any 
 
         if keys[pygame.K_LSHIFT]:
             if airborn:
-                self.player1.airdodge()
+                self.character1.airdodge()
 
             if not airborn: 
-                self.player1.shield()
+                self.character1.shield()
                 
                 if keys[pygame.K_d]:
-                    if character_dirrection == 'right':
-                        self.player1.f_roll()
-                    if character_dirrection == 'left':
-                        self.player1.r_roll()
+                    if facing_right:
+                        self.character1.f_roll()
+                    if not facing_right:
+                        self.character1.r_roll()
                 elif keys[pygame.K_a]:
-                    if character_dirrection == 'right':
-                        self.player1.b_roll()
-                    if character_dirrection == 'left':
-                        self.player1.f_roll()
+                    if facing_right:
+                        self.character1.b_roll()
+                    if not facing_right:
+                        self.character1.f_roll()
                 elif keys[pygame.K_s]:
-                    self.player1.spotdodge()
+                    self.character1.spotdodge()
                 elif keys[pygame.K_z]:
                     attack = 'grab'
-                    self.player1.attack(attack)
+                    self.character1.attack(attack)
 
         if keys[pygame.K_LCRTL]:
             if not airborn:
@@ -134,107 +135,107 @@ Let me know what approach you all decide to take for that, and if there are any 
 
 
         if keys[pygame.K_j] and keys == 1: #makes sure that moving is the only input being performed
-            self.player2.moving_left()
+            self.character2.moving_left()
         if keys[pygame.K_l] and keys == 1: 
-            self.player2.moving_right()
+            self.character2.moving_right()
 
         if keys[pygame.K_u]:
             global airborn
             if not airborn:
-                self.player2.jump()
+                self.character2.jump()
                 airborn = True
                 double_jump = False
             elif airborn and not double_jump:
-                self.player2.jump()
+                self.character2.jump()
                 double_jump = True
 
         if keys[pygame.K_m]:
             if not airborn:
                 if keys[pygame.K_l] or keys[pygame.K_j]:
                     attack = 'f_tilt'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
                 elif keys[pygame.K_i]:
                     attack = 'up_tilt'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
                 elif keys[pygame.K_k]: 
                     attack = 'down_tilt' 
-                    self.player2.attack(attack)  
+                    self.character2.attack(attack)  
                 else:
                     attack = 'jab'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
 
             if airborn:
                 if keys[pygame.K_l]:
-                    if character_dirrection == 'right':
+                    if facing_right:
                         attack = 'fair'
-                        self.player2.attack(attack)
-                    if character_dirrection == 'left':
+                        self.character2.attack(attack)
+                    if not facing_right:
                         attack = 'bair'
-                        self.player2.attack(attack)
+                        self.character2.attack(attack)
                 elif keys[pygame.K_j]:
-                    if character_dirrection == 'left':
+                    if not facing_right:
                         attack = 'fair'
-                        self.player2.attack(attack)
-                    if character_dirrection == 'right':
+                        self.character2.attack(attack)
+                    if facing_right:
                         attack = 'bair'
-                        self.player2.attack(attack)
+                        self.character2.attack(attack)
                 elif keys[pygame.K_i]:
                     attack = 'up_air'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
                 elif keys[pygame.K_k]:  
                     attack = 'down_air' 
-                    self.player2.attack(attack) 
+                    self.character2.attack(attack) 
                 else:
                     attack = 'nair'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
 
         if keys[pygame.K_COMMA]:
             if keys[pygame.K_l] or keys[pygame.K_j]:
                 attack = 'f_smash'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
             elif keys[pygame.K_i]:
                 attack = 'up_smash'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
             elif keys[pygame.K_k]:   
                 attack = 'down_smash'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
 
         if keys[pygame.K_PERIOD]:
             if keys[pygame.K_l]:
                 attack = 'side_b'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
             elif keys[pygame.K_i]:
                 attack = 'up_b'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
             elif keys[pygame.K_k]:   
                 attack = 'down_b'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
             else:
                 attack = 'neutral_b'
-                self.player2.attack(attack)
+                self.character2.attack(attack)
         
         if keys[pygame.K_n]:
             if airborn:
-                self.player2.airdodge()
+                self.character2.airdodge()
 
             if not airborn: 
-                self.player2.shield()
+                self.character2.shield()
                 
                 if keys[pygame.K_l]:
                     if character_direction == 'right':
-                        self.player2.f_roll()
+                        self.character2.f_roll()
                     if character_direction == 'left':
-                        self.player2.r_roll()
+                        self.character2.r_roll()
                 elif keys[pygame.K_j]:
                     if character_direction == 'right':
-                        self.player2.b_roll()
+                        self.character2.b_roll()
                     if character_direction == 'left':
-                        self.player2.f_roll()
+                        self.character2.f_roll()
                 elif keys[pygame.K_k]:
-                    self.player2.spotdodge()
+                    self.character2.spotdodge()
                 elif keys[pygame.K_m]:
                     attack = 'grab'
-                    self.player2.attack(attack)
+                    self.character2.attack(attack)
         if keys[pygame.K_SPACE]:
             if not airborn:
                 attack = 'grab'
@@ -281,18 +282,18 @@ Let me know what approach you all decide to take for that, and if there are any 
                     if axis_y > -0.2:
                         attack = 'down_tilt'
                 else:
-                        self.player2.jab()
+                        self.character2.jab()
 
             if airborn:
                 if axis_x > deadzone:
-                    if player2_dirrection == 'right':
+                    if character2_dirrection == 'right':
                         attack = 'fair'
-                    if player2_dirrection == 'left':
+                    if character2_dirrection == 'left':
                         attack = 'bair'
                 elif axis_x < deadzone:
-                    if player2_dirrection == 'left':
+                    if character2_dirrection == 'left':
                         attack = 'fair'
-                    if player2_dirrection == 'right':
+                    if character2_dirrection == 'right':
                         attack = 'bair'
                 elif axis_y > deadzone:
                     attack = 'up_air'
