@@ -44,14 +44,14 @@ class InputHandler():
 
             if airborn:
                 if keys[pygame.K_d]:
-                    if facing_right:
+                    if self.character1.facing_right:
                         attack = 'fair'
-                    if not facing_right:
+                    if not self.character1.facing_right:
                         attack = 'bair'
                 elif keys[pygame.K_a]:
-                    if not facing_right:
+                    if not self.character1.facing_right:
                         attack = 'fair'
-                    if facing_right:
+                    if self.character1.facing_right:
                         attack = 'bair'
                 elif keys[pygame.K_w]:
                     attack = 'up_air'
@@ -113,14 +113,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.character1.shield()
                 
                 if keys[pygame.K_d]:
-                    if facing_right:
+                    if self.character1.facing_right:
                         self.character1.f_roll()
-                    if not facing_right:
+                    if not self.character1.facing_right:
                         self.character1.r_roll()
                 elif keys[pygame.K_a]:
-                    if facing_right:
+                    if self.character1.facing_right:
                         self.character1.b_roll()
-                    if not facing_right:
+                    if not self.character1.facing_right:
                         self.character1.f_roll()
                 elif keys[pygame.K_s]:
                     self.character1.spotdodge()
@@ -166,17 +166,17 @@ Let me know what approach you all decide to take for that, and if there are any 
 
             if airborn:
                 if keys[pygame.K_l]:
-                    if facing_right:
+                    if self.character2.facing_right:
                         attack = 'fair'
                         self.character2.attack(attack)
-                    if not facing_right:
+                    if not self.character2.facing_right:
                         attack = 'bair'
                         self.character2.attack(attack)
                 elif keys[pygame.K_j]:
-                    if not facing_right:
+                    if not self.character2.facing_right:
                         attack = 'fair'
                         self.character2.attack(attack)
-                    if facing_right:
+                    if self.character2.facing_right:
                         attack = 'bair'
                         self.character2.attack(attack)
                 elif keys[pygame.K_i]:
@@ -222,14 +222,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.character2.shield()
                 
                 if keys[pygame.K_l]:
-                    if character_direction == 'right':
+                    if self.character2.facing_right:
                         self.character2.f_roll()
-                    if character_direction == 'left':
+                    if not self.character2.facing_right:
                         self.character2.r_roll()
                 elif keys[pygame.K_j]:
-                    if character_direction == 'right':
+                    if self.character2.facing_right:
                         self.character2.b_roll()
-                    if character_direction == 'left':
+                    if not self.character2.facing_right:
                         self.character2.f_roll()
                 elif keys[pygame.K_k]:
                     self.character2.spotdodge()
@@ -244,102 +244,102 @@ Let me know what approach you all decide to take for that, and if there are any 
 
     
 
-    pygame.joystick.init()
-    controller = pygame.joystick.Joystick(0) # defines the controller
-    controller.init() # initializes the controller
-    for event in pygame.event.get():
-        if event.type == pygame.JOYBUTTONDOWN:
+        pygame.joystick.init()
+        controller = pygame.joystick.Joystick(0) # defines the controller
+        controller.init() # initializes the controller
+        for event in pygame.event.get():
+            if event.type == pygame.JOYBUTTONDOWN:
 
-            buttons = pygame.button.get_pressed()
-            button_count = sum(buttons)
-            axis_x = joystick.get_axis(0)
-            axis_y = joystick.get_axis(1)
-            deadzone = 0.2 
-            
-            if axis_x > deadzone and buttons == 0: 
-                character.moving_right
-            elif axis_x < -deadzone: 
-                character.moving_left
-
+                buttons = pygame.button.get_pressed()
+                button_count = sum(buttons)
+                axis_x = joystick.get_axis(0)
+                axis_y = joystick.get_axis(1)
+                deadzone = 0.2 
                 
+                if axis_x > deadzone and buttons == 0: 
+                    character.moving_right
+                elif axis_x < -deadzone: 
+                    character.moving_left
 
-            
-            if event.button == 3: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
-                    global airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
-                    if not airborn:
-                        self.character.jump()
-                        airborn = True
-                        char2_double_jump = False
-                    elif airborn and not char2_double_jump:
-                        self.character.jump()
-                        char2_double_jump = True
-            if event.button == 2:
-                if not airborn:
-                    if axis_x > 0.2 or axis_x < -0.2:
-                        attack = 'f_tilt'
-                    if axis_y < 0.2:
-                        attack = 'up_tilt'
-                    if axis_y > -0.2:
-                        attack = 'down_tilt'
-                else:
-                        self.character2.jab()
-
-            if airborn:
-                if axis_x > deadzone:
-                    if character2_dirrection == 'right':
-                        attack = 'fair'
-                    if character2_dirrection == 'left':
-                        attack = 'bair'
-                elif axis_x < deadzone:
-                    if character2_dirrection == 'left':
-                        attack = 'fair'
-                    if character2_dirrection == 'right':
-                        attack = 'bair'
-                elif axis_y > deadzone:
-                    attack = 'up_air'
-                elif axis_y < deadzone:  
-                    attack = 'down_air'
-                else:
-                    attack = 'nair'
                     
-            if event.button == 1: 
-                if axis_x > deadzone or axis_x < -deadzone:
-                    attack = 'f_smash'
-                elif axis_y > deadzone:
-                    attack = 'up_smash'
-                elif axis_y < -deadzone:
-                    attack = 'down_smash'
-            if event.button == 0:
-                if axis_x > deadzone or axis_y < -deadzone:
-                    attack = 'side_b'
-                elif axis_y > deadzone:
-                    attack = 'up_b'
-                elif axis_y < -deadzone:   
-                    attack = 'down_b'
-                else:
-                    attack = 'neutral_b'
-            if event.button == 5:
-                if airborn:
-                    self.character.airdodge()
-                if airborn:
-                    self.character.shield()
-                if axis_x > deadzone:
-                    if facing_right:
-                        self.character.f_roll()
-                    if not facing_right:
-                        self.character.b_roll()
-                elif axis_x < -deadzone:
-                    if facing_right:
-                        self.character.b_roll()
-                    if not facing_right:
-                        self.character.f_roll()
-                elif axis_y < -deadzone:
-                    self.character.spotdodge()
-                elif event.button == 3:
-                    attack = 'grab'
-            if event.button == 5:
-                if not airborn:
-                    attack = 'grab'
+
                 
+                if event.button == 3: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
+                        global airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
+                        if not airborn:
+                            self.character.jump()
+                            airborn = True
+                            char2_double_jump = False
+                        elif airborn and not char2_double_jump:
+                            self.character.jump()
+                            char2_double_jump = True
+                if event.button == 2:
+                    if not airborn:
+                        if axis_x > 0.2 or axis_x < -0.2:
+                            attack = 'f_tilt'
+                        if axis_y < 0.2:
+                            attack = 'up_tilt'
+                        if axis_y > -0.2:
+                            attack = 'down_tilt'
+                    else:
+                            self.character2.jab()
+
+                if airborn:
+                    if axis_x > deadzone:
+                        if not self.character2.facing_right:
+                            attack = 'fair'
+                        if not self.character2.facing_right:
+                            attack = 'bair'
+                    elif axis_x < deadzone:
+                        if self.character2.facing_right:
+                            attack = 'fair'
+                        if not self.character2.facing_right:
+                            attack = 'bair'
+                    elif axis_y > deadzone:
+                        attack = 'up_air'
+                    elif axis_y < deadzone:  
+                        attack = 'down_air'
+                    else:
+                        attack = 'nair'
+                        
+                if event.button == 1: 
+                    if axis_x > deadzone or axis_x < -deadzone:
+                        attack = 'f_smash'
+                    elif axis_y > deadzone:
+                        attack = 'up_smash'
+                    elif axis_y < -deadzone:
+                        attack = 'down_smash'
+                if event.button == 0:
+                    if axis_x > deadzone or axis_y < -deadzone:
+                        attack = 'side_b'
+                    elif axis_y > deadzone:
+                        attack = 'up_b'
+                    elif axis_y < -deadzone:   
+                        attack = 'down_b'
+                    else:
+                        attack = 'neutral_b'
+                if event.button == 5:
+                    if airborn:
+                        self.character.airdodge()
+                    if airborn:
+                        self.character.shield()
+                    if axis_x > deadzone:
+                        if self.character2.facing_right:
+                            self.character.f_roll()
+                        if not self.character2.facing_right:
+                            self.character.b_roll()
+                    elif axis_x < -deadzone:
+                        if not self.character2.facing_right:
+                            self.character.b_roll()
+                        if self.character2.facing_right:
+                            self.character.f_roll()
+                    elif axis_y < -deadzone:
+                        self.character.spotdodge()
+                    elif event.button == 3:
+                        attack = 'grab'
+                if event.button == 5:
+                    if not airborn:
+                        attack = 'grab'
+                    
+            
         
-    
