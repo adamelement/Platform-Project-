@@ -1,11 +1,11 @@
 import pygame
 
 
-(((((percent / 10 + (percent * damage) / 20) * 200 / (weight +10 ) * 1.4) + 18) * knockback_scaling) + knock_back) * r
+'''(((((percent / 10 + (percent * damage) / 20) * 200 / (weight +10 ) * 1.4) + 18) * knockback_scaling) + knock_back) * r
 
 
 
-1 + (p - 35 )(115)*0.1
+1 + (p - 35 )(115)*0.1'''
 
 marshal_up_tilt = []
 for i in range (1,22):
@@ -61,30 +61,30 @@ bair = character_moveset(15, 75, 300, 1.4, 0, '''blank for now''', 14, 24)
 dair = character_moveset(12, 100, 175, 0.75, 0, '''blank for now''', 15, 25)
 
 #old moveset, changed the moves into a class and defines a few of their stats
-'''marshals_moves = {'f_tilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'jab1' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
-                     'jab2' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
-                     'rappid_jab' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'up_tilt': {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
-                     'down_tilt' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
-                     'dash_attack' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'nair' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'fair' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'bair' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'dair' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'up_air' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'f_smash' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'up_smash' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'down_smash' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'neutral_b' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : ,'invincibility' : , 'hitbox' :  , 'startup': , 'endlag': }, 
-                     'up_b' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': },
-                     'down_b' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'side_b' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'grab' : {'damage' :0  , 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : ,'hitbox' :  , 'startup' : , 'endlag': }, 
-                     'up_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'down_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'back_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'forward_throw' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'attack_getup' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'ledge_attack' : {'damage' :  , 'knock_back' : '', 'launch_angle': , 'knockback_scaling' : , 'invincibility' : ,'hitbox' :  , 'startup': , 'endlag': }, 
-                     'airddoge' : {'damage' : 0, 'knock_back' :0 '', 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' :  , 'startup' : 3, 'endlag': 49} }'''
+marshals_moves = {'f_tilt': {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'jab1' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'jab2' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'rappid_jab' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'up_tilt': {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'down_tilt' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'dash_attack' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'nair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'fair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'bair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'dair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'up_air' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'f_smash' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'up_smash' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'down_smash' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'neutral_b' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '','invincibility' : '', 'hitbox' : '' , 'startup': '', 'endlag': '' }, 
+                     'up_b' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'down_b' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'side_b' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'grab' : {'damage' :0  , 'knock_back' :0 , 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : '','hitbox' :  '', 'startup' : '', 'endlag':'' }, 
+                     'up_throw' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'down_throw' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'back_throw' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'forward_throw' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'attack_getup' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'ledge_attack' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+                     'airddoge' : {'damage' : 0, 'knock_back' :0 , 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' : '' , 'startup' : 3, 'endlag': 49}}

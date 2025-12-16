@@ -7,15 +7,16 @@ import pygame
 import math
 
 from constants import (
-    SCREEN_WIDTH,
+SCREEN_WIDTH,
     SCREEN_HEIGHT,
     BACKGROUND_COLOUR,
     CAPTION,
     FPS,
-    PLAYER1_COLOUR # will not be shown once sprites are blitted on,
-    PLAYER2_COLOUR # will not be shown once sprites are present, 
+    PLAYER1_COLOUR, # will not be shown once sprites are blitted on,
+    PLAYER2_COLOUR, # will not be shown once sprites are present, 
     HITBOX_COLOUR # will not be drawn, making these hitboxes effectively invisible,
-)
+)               
+
 
 from character import Character
 from stage import Stage
@@ -48,8 +49,8 @@ class Game:
         self.stage = Stage()
 
         # Two fighting characters 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset, isright = True)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, 2, moveset, isright = False)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, marshals_moves, isright = True)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, marshals_moves, isright = False)
 
         # Input handling objects for both characters 
         self.input = InputHandler(self.player1, self.player2)
@@ -113,7 +114,7 @@ class Game:
         player2_launch_angle = self.player1.hitboxes[0][2]
         player2_knockback = self.player1.hitboxes[0][1] + self.player2.percentage
         player2_x_displacement = player2_knockback * math.cos(player1_launch_angle * math.pi / 180)
-        player2_x_displacement = player2_knockback * math.sin(player1_launch_angle * math.pi / 180)
+        player2_y_displacement = player2_knockback * math.sin(player1_launch_angle * math.pi / 180)
         
         for boxes in player1_attack:
             if boxes.colliderect(self.player2.rect):

@@ -16,64 +16,63 @@ class InputHandler():
 
         keys = pygame.key.get_pressed()
         pressed_count = sum(keys)
-        if keys[pygame.K_a] and pressed_count == 1: #makes sure that moving is the only input being performed
+        if keys[pygame.K_a] or keys[pygame.K_LEFT] and pressed_count == 1: #makes sure that moving is the only input being performed
             self.character1.moving_left()
-        if keys[pygame.K_d] and pressed_count == 1: 
+        if keys[pygame.K_d] or keys[pygame.K_RIGHT]  and pressed_count == 1: 
             self.character1.moving_right()
 
         if keys[pygame.K_q]:
-            global airborn
-            if not airborn:
+            if not self.character1.airborn:
                 self.character1.jump()
-                airborn = True
+                self.character1.airborn = True
                 double_jump = False
-            elif airborn and not double_jump:
+            elif self.character1.airborn and not double_jump:
                 self.character1.jump()
                 double_jump = True
 
         if keys[pygame.K_z]:
-            if not airborn:
-                if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
+            if not self.character1.airborn:
+                if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT] or keys[pygame.K_d] or keys[pygame.K_a]:
                     attack = 'f_tilt'
-                elif keys[pygame.K_w]:
+                elif keys[pygame.K_w] or keys[pygame.K_UP]:
                     attack = 'up_tilt'
-                elif keys[pygame.K_s]: 
+                elif keys[pygame.K_s] or keys[pygame.K_DOWN]: 
                     attack = 'down_tilt' 
                 else:
                     attack = 'jab'
 
-            if airborn:
-                if keys[pygame.K_d]:
+            if self.character1.airborn:
+                if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
                     if self.character1.facing_right:
                         attack = 'fair'
                     if not self.character1.facing_right:
                         attack = 'bair'
-                elif keys[pygame.K_a]:
+                elif keys[pygame.K_a] or keys[pygame.K_LEFT]:
                     if not self.character1.facing_right:
                         attack = 'fair'
                     if self.character1.facing_right:
                         attack = 'bair'
-                elif keys[pygame.K_w]:
+                elif keys[pygame.K_w] or keys[pygame.K_UP]:
                     attack = 'up_air'
-                elif keys[pygame.K_s]:  
+                elif keys[pygame.K_s] or keys[pygame.K_DOWN]:  
                     attack = 'down_air' 
                 else:
                     attack = 'nair'
 
         if keys[pygame.K_x]:
-            if keys[pygame.K_d] or keys[pygame.K_a]:
+            if keys[pygame.K_d] or keys[pygame.K_a] or keys[pygame.K_RIGHT] or keys[pygame.K_LEFT]:
                 attack = 'f_smash'
-            elif keys[pygame.K_w]:
+            elif keys[pygame.K_w] or keys[pygame.K_UP]:
                 attack = 'up_smash'
-            elif keys[pygame.K_s]:   
+            elif keys[pygame.K_s] or keys[pygame.K_DOWN]:   
                 attack = 'down_smash'
 
         if keys[pygame.K_c]:
-            if keys[pygame.K_d]:
+            if keys[pygame.K_d] or keys[pygame.K_RIGHT] or keys[pygame.K_a] or keys[pygame.K_LEFT]:
                 attack = 'side_b'
-            elif keys[pygame.K_w]:
+            elif keys[pygame.K_w] or keys[pygame.K_UP]:
                 attack = 'up_b'
-            elif keys[pygame.K_s]:   
+            elif keys[pygame.K_s] or keys[pygame.K_DOWN]:   
                 attack = 'down_b'
             else:
                 attack = 'neutral_b'
@@ -106,30 +105,30 @@ Let me know what approach you all decide to take for that, and if there are any 
 """
 
         if keys[pygame.K_LSHIFT]:
-            if airborn:
+            if self.character1.airborn:
                 self.character1.airdodge()
 
-            if not airborn: 
+            if not self.character1.airborn: 
                 self.character1.shield()
                 
-                if keys[pygame.K_d]:
+                if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
                     if self.character1.facing_right:
                         self.character1.f_roll()
                     if not self.character1.facing_right:
                         self.character1.r_roll()
-                elif keys[pygame.K_a]:
+                elif keys[pygame.K_a or keys[pygame.K_LEFT]]:
                     if self.character1.facing_right:
                         self.character1.b_roll()
                     if not self.character1.facing_right:
                         self.character1.f_roll()
-                elif keys[pygame.K_s]:
+                elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
                     self.character1.spotdodge()
                 elif keys[pygame.K_z]:
                     attack = 'grab'
                     self.character1.attack(attack)
 
         if keys[pygame.K_LCRTL]:
-            if not airborn:
+            if not self.character1.airborn:
                 attack = 'grab'
 
 
@@ -140,17 +139,16 @@ Let me know what approach you all decide to take for that, and if there are any 
             self.character2.moving_right()
 
         if keys[pygame.K_u]:
-            global airborn
-            if not airborn:
+            if not self.character2.airborn:
                 self.character2.jump()
-                airborn = True
+                self.character2.airborn = True
                 double_jump = False
-            elif airborn and not double_jump:
+            elif self.character2.airborn and not double_jump:
                 self.character2.jump()
                 double_jump = True
 
         if keys[pygame.K_m]:
-            if not airborn:
+            if not self.character2.airborn:
                 if keys[pygame.K_l] or keys[pygame.K_j]:
                     attack = 'f_tilt'
                     self.character2.attack(attack)
@@ -164,7 +162,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                     attack = 'jab'
                     self.character2.attack(attack)
 
-            if airborn:
+            if self.character2.airborn:
                 if keys[pygame.K_l]:
                     if self.character2.facing_right:
                         attack = 'fair'
@@ -201,7 +199,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.character2.attack(attack)
 
         if keys[pygame.K_PERIOD]:
-            if keys[pygame.K_l]:
+            if keys[pygame.K_l] or keys[pygame.K_j]:
                 attack = 'side_b'
                 self.character2.attack(attack)
             elif keys[pygame.K_i]:
@@ -215,10 +213,10 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.character2.attack(attack)
         
         if keys[pygame.K_n]:
-            if airborn:
+            if self.character2.airborn:
                 self.character2.airdodge()
 
-            if not airborn: 
+            if not self.character2.airborn: 
                 self.character2.shield()
                 
                 if keys[pygame.K_l]:
@@ -237,7 +235,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                     attack = 'grab'
                     self.character2.attack(attack)
         if keys[pygame.K_SPACE]:
-            if not airborn:
+            if not self.character2.airborn:
                 attack = 'grab'
 
 
@@ -257,24 +255,23 @@ Let me know what approach you all decide to take for that, and if there are any 
                 deadzone = 0.2 
                 
                 if axis_x > deadzone and buttons == 0: 
-                    character.moving_right
+                    self.character2.moving_right
                 elif axis_x < -deadzone: 
-                    character.moving_left
+                    self.character2.moving_left
 
                     
 
                 
                 if event.button == 3: #all different buttons have different names that are numbered, i could explain them at school but i'm just working off the list i have
-                        global airborn #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
-                        if not airborn:
+                        if not self.character2.airborn: #made a seperate airborne because as far as i know they aren't different throughout the code. I could very well be missunderstanding or forgetting something though
                             self.character.jump()
-                            airborn = True
+                            self.character2.airborn = True
                             char2_double_jump = False
-                        elif airborn and not char2_double_jump:
+                        elif self.character2.airborn and not char2_double_jump:
                             self.character.jump()
                             char2_double_jump = True
                 if event.button == 2:
-                    if not airborn:
+                    if not self.character2.airborn:
                         if axis_x > 0.2 or axis_x < -0.2:
                             attack = 'f_tilt'
                         if axis_y < 0.2:
@@ -284,7 +281,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                     else:
                             self.character2.jab()
 
-                if airborn:
+                if self.character2.airborn:
                     if axis_x > deadzone:
                         if not self.character2.facing_right:
                             attack = 'fair'
@@ -319,9 +316,9 @@ Let me know what approach you all decide to take for that, and if there are any 
                     else:
                         attack = 'neutral_b'
                 if event.button == 5:
-                    if airborn:
+                    if self.character2.airborn:
                         self.character.airdodge()
-                    if airborn:
+                    if self.character2.airborn:
                         self.character.shield()
                     if axis_x > deadzone:
                         if self.character2.facing_right:
@@ -338,7 +335,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                     elif event.button == 3:
                         attack = 'grab'
                 if event.button == 5:
-                    if not airborn:
+                    if not self.character2.airborn:
                         attack = 'grab'
                     
             
