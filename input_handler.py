@@ -3,7 +3,7 @@ import pygame
 class InputHandler():
 
     def __init__(self):
-        self.player1 = player1
+
 
 
 
@@ -43,14 +43,14 @@ class InputHandler():
 
             if airborn:
                 if keys[pygame.K_d]:
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         attack = 'fair'
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         attack = 'bair'
                 elif keys[pygame.K_a]:
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         attack = 'fair'
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         attack = 'bair'
                 elif keys[pygame.K_w]:
                     attack = 'up_air'
@@ -112,14 +112,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.player1.shield()
                 
                 if keys[pygame.K_d]:
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         self.player1.f_roll()
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         self.player1.r_roll()
                 elif keys[pygame.K_a]:
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         self.player1.b_roll()
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         self.player1.f_roll()
                 elif keys[pygame.K_s]:
                     self.player1.spotdodge()
@@ -165,17 +165,17 @@ Let me know what approach you all decide to take for that, and if there are any 
 
             if airborn:
                 if keys[pygame.K_l]:
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         attack = 'fair'
                         self.player2.attack(attack)
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         attack = 'bair'
                         self.player2.attack(attack)
                 elif keys[pygame.K_j]:
-                    if character_dirrection == left:
+                    if character_dirrection == 'left':
                         attack = 'fair'
                         self.player2.attack(attack)
-                    if character_dirrection == right:
+                    if character_dirrection == 'right':
                         attack = 'bair'
                         self.player2.attack(attack)
                 elif keys[pygame.K_i]:
@@ -221,14 +221,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                 self.player2.shield()
                 
                 if keys[pygame.K_l]:
-                    if character_direction == right:
+                    if character_direction == 'right':
                         self.player2.f_roll()
-                    if character_direction == left:
+                    if character_direction == 'left':
                         self.player2.r_roll()
                 elif keys[pygame.K_j]:
-                    if character_direction == right:
+                    if character_direction == 'right':
                         self.player2.b_roll()
-                    if character_direction == left:
+                    if character_direction == 'left':
                         self.player2.f_roll()
                 elif keys[pygame.K_k]:
                     self.player2.spotdodge()
@@ -285,14 +285,14 @@ Let me know what approach you all decide to take for that, and if there are any 
 
             if airborn:
                 if axis_x > deadzone:
-                    if player2_dirrection == right:
+                    if player2_dirrection == 'right':
                         attack = 'fair'
-                    if player2_dirrection == left:
+                    if player2_dirrection == 'left':
                         attack = 'bair'
                 elif axis_x < deadzone:
-                    if player2_dirrection == left:
+                    if player2_dirrection == 'left':
                         attack = 'fair'
-                    if player2_dirrection == right:
+                    if player2_dirrection == 'right':
                         attack = 'bair'
                 elif axis_y > deadzone:
                     attack = 'up_air'
