@@ -329,7 +329,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                 if event.button == 4:
                     if self.character2.airborn:
                         self.character.airdodge()
-                    if self.character2.airborn:
+                    if not self.character2.airborn:
                         self.character.shield()
                     if axis_x > deadzone:
                         if self.character2.facing_right:
