@@ -105,17 +105,20 @@ class Game:
         # fill the screen with black ink 
     
     def collide_check(self):
-        player1_attack = self.player1.hitboxes
-        player1_launch_angle = self.player2.hitboxes[0][2]
-        player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage # or formula for knockback 
-        player1_x_displacement = player1_knockback * math.cos(player1_launch_angle * math.pi / 180)
-        player1_y_displacement = player1_knockback * math.sin(player1_launch_angle * math.pi / 180)
-        
-        player2_attack = self.player2.hitboxes
-        player2_launch_angle = self.player1.hitboxes[0][2]
-        player2_knockback = self.player1.hitboxes[0][1] + self.player2.percentage
-        player2_x_displacement = player2_knockback * math.cos(player1_launch_angle * math.pi / 180)
-        player2_y_displacement = player2_knockback * math.sin(player1_launch_angle * math.pi / 180)
+        try:
+            player1_attack = self.player1.hitboxes
+            player1_launch_angle = self.player2.hitboxes[0][2]
+            player1_knockback = self.player2.hitboxes[0][1] + self.player1.percentage # or formula for knockback 
+            player1_x_displacement = player1_knockback * math.cos(player1_launch_angle * math.pi / 180)
+            player1_y_displacement = player1_knockback * math.sin(player1_launch_angle * math.pi / 180)
+            
+            player2_attack = self.player2.hitboxes
+            player2_launch_angle = self.player1.hitboxes[0][2]
+            player2_knockback = self.player1.hitboxes[0][1] + self.player2.percentage
+            player2_x_displacement = player2_knockback * math.cos(player1_launch_angle * math.pi / 180)
+            player2_y_displacement = player2_knockback * math.sin(player1_launch_angle * math.pi / 180)
+        except:
+            pass
         
         for boxes in player1_attack:
             if boxes.colliderect(self.player2.rect):
