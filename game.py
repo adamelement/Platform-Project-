@@ -20,7 +20,6 @@ SCREEN_WIDTH,
 
 
 from character import Character
-from stage import Stage
 from input_handler import InputHandler
 from hitbox import Hitbox
 
@@ -47,12 +46,12 @@ class Game:
         self.is_running = True
 
         # Stage
-        self.stage = Stage()
+        #self.stage = Stage()
 
         # Two fighting characters 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, moveset =marshals_moves, isright = True)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, moveset = marshals_moves, isright = False)
-
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500)
+        self.players = InputHandler(self.player1, self.player2)
         # Input handling objects for both characters 
         self.input = InputHandler(self.player1, self.player2)
 
@@ -67,8 +66,7 @@ class Game:
             dt = self.clock.tick(FPS) / 1000.0  # dt ready for later use
 
             self.handle_events()
-            self.player1_input.read()
-            self.player2_input.read()
+            self.players.read()
             self.update()
             self.collide_check()
             self.draw()

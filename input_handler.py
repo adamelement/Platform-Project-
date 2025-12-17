@@ -1,5 +1,6 @@
 import pygame
 
+attack = ''
 class InputHandler():
 
     def __init__(self, character1, character2):
@@ -31,6 +32,7 @@ class InputHandler():
                 double_jump = True
 
         if keys[pygame.K_z]:
+            global attack
             if not self.character1.airborn:
                 if keys[pygame.K_RIGHT] or keys[pygame.K_LEFT] or keys[pygame.K_d] or keys[pygame.K_a]:
                     attack = 'f_tilt'
@@ -128,12 +130,13 @@ Let me know what approach you all decide to take for that, and if there are any 
                     attack = 'grab'
                 
 
-        if keys[pygame.K_LCRTL]:
+        if keys[pygame.K_LCTRL]:
             if not self.character1.airborn:
                 attack = 'grab'
-        self.character1.attack(attack)
-        self.character1.animation(attack)
-        attack = ''
+        if attack != '':
+            self.character1.attack(attack)
+            self.character1.animation(attack)
+            attack = ''
 
 
 
@@ -241,10 +244,10 @@ Let me know what approach you all decide to take for that, and if there are any 
         if keys[pygame.K_SPACE]:
             if not self.character2.airborn:
                 attack = 'grab'
-
-        self.character2.attack(attack)
-        self.character2.animation(attack)
-        attack = ''
+        if attack != '':
+            self.character2.attack(attack)
+            self.character2.animation(attack)
+            attack = ''
 
 
 
