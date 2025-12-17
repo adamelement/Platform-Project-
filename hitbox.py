@@ -1,3 +1,6 @@
+import pygame
+pygame.init()
+
 class Hitbox:
     def __init__(self, dimensions, knockback, launch_angle):
         self.hitbox = pygame.Rect(dimensions)
