@@ -251,7 +251,7 @@ Let me know what approach you all decide to take for that, and if there are any 
     
 
         pygame.joystick.init()
-        pygame.joystick.Joystick.init
+        pygame.joystick.Joystick.init()
         controller = pygame.joystick.Joystick(0) # defines the controller
         controller.init() # initializes the controller
         for event in pygame.event.get():
