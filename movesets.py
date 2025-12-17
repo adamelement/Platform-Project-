@@ -24,10 +24,10 @@ for i in range (1,20):
     image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_f_tilt{i}.png').convert_alpha()
     marshal_up_tilt.append(image)
 
-marshal_dash_frames = []
+marshal_dash = []
 for i in range (1,11):
     image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_dash/Marshal_dash{i}.png').convert_alpha()
-    marshal_dash_frames.append(image)
+    marshal_dash.append(image)
 
 marshal_airidle = []
 for i in range(1,32):
@@ -61,12 +61,12 @@ bair = character_moveset(15, 75, 300, 1.4, 0, '''blank for now''', 14, 24)
 dair = character_moveset(12, 100, 175, 0.75, 0, '''blank for now''', 15, 25)
 
 #old moveset, changed the moves into a class and defines a few of their stats
-marshals_moves = {'f_tilt': {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
+marshals_moves = {'f_tilt': {'damage' : 12 , 'knock_back' : 200, 'launch_angle': 60, 'knockback_scaling' : 1.25, 'invincibility' : 0,'hitbox' :  '', 'startup': 7 , 'endlag': 15, 'animations' : marshal_f_tilt }, 
                      'jab1' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
                      'jab2' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
-                     'rappid_jab' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
-                     'up_tilt': {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
-                     'down_tilt' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' },
+                     'rappid_jab' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'', 'animations' : marshal_up_tilt }, 
+                     'up_tilt': {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'', 'animations' : marshal_d_tilt },
+                     'down_tilt' : {'damage' : 5 , 'knock_back' : 10, 'launch_angle': 80, 'knockback_scaling' : 0.2, 'invincibility' : 0,'hitbox' :  '', 'startup':4 , 'endlag':12 },
                      'dash_attack' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
                      'nair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
                      'fair' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 

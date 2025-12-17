@@ -5,6 +5,7 @@
 import sys
 import pygame
 import math
+from movesets import marshals_moves
 
 from constants import (
 SCREEN_WIDTH,
@@ -49,8 +50,8 @@ class Game:
         self.stage = Stage()
 
         # Two fighting characters 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, marshals_moves, isright = True)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, marshals_moves, isright = False)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, moveset =marshals_moves, isright = True)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, direction = 4, max_speed = 6, moveset = marshals_moves, isright = False)
 
         # Input handling objects for both characters 
         self.input = InputHandler(self.player1, self.player2)

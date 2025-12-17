@@ -1,6 +1,7 @@
 import time
 import pygame
-
+from hitbox import Hitbox
+from constants import SCREEN_WIDTH
 class Character: # should just have class Character - all that should go in init
     MOVEMENT_ACCEL = 0.06 # constant, so defined here
     FRICTION       = 0.78 # adjust accordingly - the lower the value the faster the character stops - not the coefficient of friction! We should probably modify the name  
@@ -97,22 +98,22 @@ class Character: # should just have class Character - all that should go in init
 
     def attack(self, attack_type): # or just call this attack and use a flag variable to signal the kind of attack and retrieve the appropriate data from moveset
         self.hitboxes = []
-        launch_angle, knockback = moveset[attack_type]['launch_angle'], moveset[attack_type]['knock_back'] # instead of ftilt, use the flag variable
-        for dimensions in moveset[attack_type]['hitbox']:
+        launch_angle, knockback = self.moveset[attack_type]['launch_angle'], self.moveset[attack_type]['knock_back'] # instead of ftilt, use the flag variable
+        for dimensions in self.moveset[attack_type]['hitbox']:
             dimensions += [self.x, self.y, 0, 0]  
             self.hitboxes.append(Hitbox(dimensions, knockback, launch_angle))
 
 
     def animation(self, animation_type):
         #self.images =  use animation_type to retrieve the list of images from the moveset dictionary
+        self.images = [self.moveset[animation_type]['animations']]
         self.current_image = self.images[self.frame_index]
         self.frame_index = (self.frame_index + 1) % len(self.images)
         if self.frame_index > 8:
             if self.frame_index == len(self.images) - 1: 
                 # or whichever number to represent the attack
                 self.frame_index = 0
-                self.images = # set to default movement 
-                break 
+                self.images = '' # set to default movement  
         
     
 

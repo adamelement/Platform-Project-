@@ -110,6 +110,7 @@ Let me know what approach you all decide to take for that, and if there are any 
 
             if not self.character1.airborn: 
                 self.character1.shield()
+        
                 
                 if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
                     if self.character1.facing_right:
@@ -125,11 +126,14 @@ Let me know what approach you all decide to take for that, and if there are any 
                     self.character1.spotdodge()
                 elif keys[pygame.K_z]:
                     attack = 'grab'
-                    self.character1.attack(attack)
+                
 
         if keys[pygame.K_LCRTL]:
             if not self.character1.airborn:
                 attack = 'grab'
+        self.character1.attack(attack)
+        self.character1.animation(attack)
+        attack = ''
 
 
 
@@ -237,6 +241,10 @@ Let me know what approach you all decide to take for that, and if there are any 
         if keys[pygame.K_SPACE]:
             if not self.character2.airborn:
                 attack = 'grab'
+
+        self.character2.attack(attack)
+        self.character2.animation(attack)
+        attack = ''
 
 
 
