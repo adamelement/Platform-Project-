@@ -133,10 +133,18 @@ Let me know what approach you all decide to take for that, and if there are any 
         if keys[pygame.K_LCTRL]:
             if not self.character1.airborn:
                 attack = 'grab'
-        if attack != '':
+        if len(attack) != 0:
             self.character1.attack(attack)
             self.character1.animation(attack)
             attack = ''
+        else:
+            if self.character1.airborn:
+                attack = 'airidle'
+            elif self.character1.airborn:
+                attack = 'idle'
+            self.character1.animation(attack)
+            attack = ''
+
 
 
 
@@ -244,8 +252,15 @@ Let me know what approach you all decide to take for that, and if there are any 
         if keys[pygame.K_SPACE]:
             if not self.character2.airborn:
                 attack = 'grab'
-        if attack != '':
+        if len(attack) != 0:
             self.character2.attack(attack)
+            self.character2.animation(attack)
+            attack = ''
+        else:
+            if self.character2.airborn:
+                attack = 'airidle'
+            elif self.character2.airborn:
+                attack = 'idle'
             self.character2.animation(attack)
             attack = ''
 
@@ -350,6 +365,18 @@ Let me know what approach you all decide to take for that, and if there are any 
                     if event.button == 4:
                         if not self.character2.airborn:
                             attack = 'grab'
+        if len(attack) != 0:
+            self.character2.attack(attack)
+            self.character2.animation(attack)
+            attack = ''
+        else:
+            if self.character2.airborn:
+                attack = 'airidle'
+            elif self.character2.airborn:
+                attack = 'idle'
+            self.character2.animation(attack)
+            attack = ''
+                    
                     
             
         
