@@ -13,7 +13,7 @@ class InputHandler():
 # 
 
 
-    def read(self): 
+    def read_keyboard(self): 
 
         keys = pygame.key.get_pressed()
         pressed_count = sum(keys)
