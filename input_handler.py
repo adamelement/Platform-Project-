@@ -140,7 +140,7 @@ Let me know what approach you all decide to take for that, and if there are any 
         else:
             if self.character1.airborn:
                 attack = 'airidle'
-            elif self.character1.airborn:
+            elif not self.character1.airborn:
                 attack = 'idle'
             self.character1.animation(attack)
             attack = ''
@@ -259,7 +259,7 @@ Let me know what approach you all decide to take for that, and if there are any 
         else:
             if self.character2.airborn:
                 attack = 'airidle'
-            elif self.character2.airborn:
+            elif not self.character2.airborn:
                 attack = 'idle'
             self.character2.animation(attack)
             attack = ''
@@ -372,7 +372,7 @@ Let me know what approach you all decide to take for that, and if there are any 
         else:
             if self.character2.airborn:
                 attack = 'airidle'
-            elif self.character2.airborn:
+            elif not self.character2.airborn:
                 attack = 'idle'
             self.character2.animation(attack)
             attack = ''

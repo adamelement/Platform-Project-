@@ -36,6 +36,11 @@ for i in range(1,32):
     image = pygame.image.load(f'assets/sprites/Marshall_Animations/Marshall_AirIdle/Marshall_Airidle{i}.png').convert_alpha()
     marshal_airidle.append(image)
 
+marshal_idle = []
+for i in range(1,20):
+    image = pygame.image.load(f'assets/sprites/Marshall_Animations/Marshall_Idle/Marshall_Idle{i}.png').convert_alpha()
+    marshal_idle.append(image)
+
  # we will probably create character objects in the game class, so this is not needed here  
     
 
@@ -89,4 +94,6 @@ marshals_moves = {'f_tilt': {'damage' : 12 , 'knock_back' : 200, 'launch_angle':
                      'forward_throw' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
                      'attack_getup' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
                      'ledge_attack' : {'damage' : '' , 'knock_back' : '', 'launch_angle': '', 'knockback_scaling' : '', 'invincibility' : '','hitbox' :  '', 'startup':'' , 'endlag':'' }, 
-                     'airddoge' : {'damage' : 0, 'knock_back' :0 , 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' : '' , 'startup' : 3, 'endlag': 49}}
+                     'airddoge' : {'damage' : 0, 'knock_back' :0 , 'launch_angle': 0 , 'knockback_scaling' :0 , 'invincibility' : (3, 30),'hitbox' : '' , 'startup' : 3, 'endlag': 49},
+                     'idle' : {'animations' : marshal_idle},
+                     'air_idle' : {'animations' : marshal_airidle}}
