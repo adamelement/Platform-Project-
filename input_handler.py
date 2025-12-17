@@ -254,22 +254,21 @@ Let me know what approach you all decide to take for that, and if there are any 
     
 
         pygame.joystick.init()
-        pygame.joystick.Joystick.init()
         controller = pygame.joystick.Joystick(0) # defines the controller
         controller.init() # initializes the controller
         for event in pygame.event.get():
             if event.type == pygame.JOYBUTTONDOWN:
 
-                buttons = pygame.button.get_pressed()
+                buttons = [controller.get_button(i) for i in range(controller.get_numbuttons())]
                 button_count = sum(buttons)
-                axis_x = joystick.get_axis(0)
-                axis_y = joystick.get_axis(1)
+                axis_x = controller.get_axis(0)
+                axis_y = controller.get_axis(1)
                 deadzone = 0.2 
                 
                 if axis_x > deadzone and buttons == 0: 
-                    self.character2.moving_right
+                    self.character.moving_right
                 elif axis_x < -deadzone: 
-                    self.character2.moving_left
+                    self.character.moving_left
 
                     
 
@@ -284,29 +283,29 @@ Let me know what approach you all decide to take for that, and if there are any 
                             char2_double_jump = True
                 if event.button == 2:
                     if not self.character2.airborn:
-                        if axis_x > 0.2 or axis_x < -0.2:
+                        if axis_x > deadzone or axis_x < -deadzone:
                             attack = 'f_tilt'
-                        if axis_y < 0.2:
+                        if axis_y > deadzone:
                             attack = 'up_tilt'
-                        if axis_y > -0.2:
+                        if axis_y < -deadzone:
                             attack = 'down_tilt'
                     else:
                             self.character2.jab()
 
                 if self.character2.airborn:
                     if axis_x > deadzone:
-                        if not self.character2.facing_right:
-                            attack = 'fair'
-                        if not self.character2.facing_right:
-                            attack = 'bair'
-                    elif axis_x < deadzone:
                         if self.character2.facing_right:
                             attack = 'fair'
                         if not self.character2.facing_right:
                             attack = 'bair'
+                    elif axis_x < -deadzone:
+                        if not self.character2.facing_right:
+                            attack = 'fair'
+                        if self.character2.facing_right:
+                            attack = 'bair'
                     elif axis_y > deadzone:
                         attack = 'up_air'
-                    elif axis_y < deadzone:  
+                    elif axis_y < -deadzone:  
                         attack = 'down_air'
                     else:
                         attack = 'nair'
@@ -327,7 +326,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                         attack = 'down_b'
                     else:
                         attack = 'neutral_b'
-                if event.button == 5:
+                if event.button == 4:
                     if self.character2.airborn:
                         self.character.airdodge()
                     if self.character2.airborn:
@@ -346,7 +345,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                         self.character.spotdodge()
                     elif event.button == 3:
                         attack = 'grab'
-                if event.button == 5:
+                if event.button == 4:
                     if not self.character2.airborn:
                         attack = 'grab'
                     
