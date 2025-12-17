@@ -66,7 +66,8 @@ class Game:
             dt = self.clock.tick(FPS) / 1000.0  # dt ready for later use
 
             self.handle_events()
-            self.players.read()
+            self.players.read_keyboard()
+            self.players.controller_read()
             self.update()
             self.collide_check()
             self.draw()

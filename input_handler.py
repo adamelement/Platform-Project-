@@ -252,7 +252,7 @@ Let me know what approach you all decide to take for that, and if there are any 
 
 
     
-
+    def controller_read(self):
         pygame.joystick.init()
         controller = pygame.joystick.Joystick(0) # defines the controller
         controller.init() # initializes the controller
