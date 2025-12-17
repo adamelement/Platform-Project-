@@ -20,7 +20,7 @@ class Character: # should just have class Character - all that should go in init
         self.airborn = airborn
 
         self.current_image = None 
-        self.current_frame_index = 0
+        self.frame_index = 0
         
         self.images = [] 
         self.hitboxes = []

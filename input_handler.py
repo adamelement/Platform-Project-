@@ -301,6 +301,7 @@ Let me know what approach you all decide to take for that, and if there are any 
                     if event.button == 2:
                         if not self.character2.airborn:
                             if axis_x > deadzone or axis_x < -deadzone:
+                                global attack
                                 attack = 'f_tilt'
                             if axis_y > deadzone:
                                 attack = 'up_tilt'
