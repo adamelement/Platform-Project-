@@ -71,6 +71,7 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
+            pygame.display.flip()
 
         pygame.quit()
         sys.exit()
