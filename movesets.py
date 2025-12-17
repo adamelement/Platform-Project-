@@ -9,29 +9,29 @@ import pygame
 
 marshal_up_tilt = []
 for i in range (1,22):
-    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_dash/Marshal_up_tilt{i}.png').convert_alpha()
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_up_tilt\Marshall_up_tilt{i}.png').convert_alpha()
     marshal_up_tilt.append(image)
     marshal_up_tilt = []
 
 marshal_d_tilt = []
 for i in range (1,12):
-    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_dash/Marshal_d_tilt{i}.png').convert_alpha()
+    image = pygame.image.load(f'assets\sprites\Marshall_Animations\Marshall_d_tilt\Marshall_d_tilt{i}.png').convert_alpha()
     marshal_up_tilt.append(image)
     marshal_up_tilt = []
 
 marshal_f_tilt = []
 for i in range (1,20):
-    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_dash/Marshal_f_tilt{i}.png').convert_alpha()
+    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_f_tilt\Marshall_f_tilt{i}.png').convert_alpha()
     marshal_up_tilt.append(image)
 
 marshal_dash = []
 for i in range (1,11):
-    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_dash/Marshal_dash{i}.png').convert_alpha()
+    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_dash\Marshall_dash{i}.png').convert_alpha()
     marshal_dash.append(image)
 
 marshal_airidle = []
 for i in range(1,32):
-    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_AirIdle/Marshal_Airidle{i}.png').convert_alpha()
+    image = pygame.image.load(f'Platform-Project\assets\sprites\Marshall_Animations\Marshall_AirIdle\Marshall_Airidle{i}.png').convert_alpha()
     marshal_airidle.append(image)
 
  # we will probably create character objects in the game class, so this is not needed here  
