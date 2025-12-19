@@ -586,3 +586,7 @@ if __name__ == "__main__":
     game = Game()
     game.run()
 
+"""  
+if not self.player1.facing_right:
+                img = pygame.transform.flip(img, True, False)
+                """
