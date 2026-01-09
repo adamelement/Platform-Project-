@@ -67,7 +67,9 @@ class Game:
 
             self.handle_events()
             self.players.read_keyboard()
+            self.input.read_keyboard()
             self.players.controller_read()
+            self.input.controller_read()
             self.update()
             self.collide_check()
             self.draw()
