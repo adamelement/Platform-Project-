@@ -109,9 +109,9 @@ class Character: # should just have class Character - all that should go in init
         self.images = [self.moveset[animation_type]['animations']]
         self.current_image = self.images[self.frame_index]
         self.frame_index = (self.frame_index + 1) % len(self.images)
-        image_num = 2*(len(self.images))
+        image_num = len(self.images)
         if self.frame_index > 8:
-            if self.frame_index == image_num - 1: 
+            if self.frame_index == 2*image_num - 1: 
                 # or whichever number to represent the attack
                 self.frame_index = 0
                 self.images = '' # set to default movement  
