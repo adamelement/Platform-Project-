@@ -22,7 +22,7 @@ SCREEN_WIDTH,
 from character import Character
 from input_handler import InputHandler
 from hitbox import Hitbox
-
+from hud import HUD
 
 class Game:
     """
@@ -100,6 +100,11 @@ class Game:
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
 
         self.window.blit(self.player1.current_image, self.player1.x, self.player1.y) # double check to make sure attributes are defined that way and repeat for p2
+
+        # Loads the hud
+        pygame.draw.rect(self.window, (0, 0, 0), hud1_sprite.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), hud2.sprite.rect)
+
 
         pygame.display.flip()
 
