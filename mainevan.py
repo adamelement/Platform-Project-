@@ -14,6 +14,7 @@ if __name__ == "__main__":
 import pygame
 import math
 import sys
+import hud
 
 SCREEN_WIDTH = 1080
 SCREEN_HEIGHT = 1080
@@ -24,6 +25,7 @@ PLAYER1_COLOUR = (0, 0, 255)
 PLAYER2_COLOUR = (255, 255, 0)
 HITBOX_COLOUR = (255, 0, 255)
 
+player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000)
 
 class Hitbox:
     def __init__(self, dimensions, knockback, launch_angle):
@@ -38,7 +40,6 @@ class InputHandler():
     def __init__(self, character1, character2):
         self.character1 = character1
         self.character2 = character2
-
     def read_keyboard(self):
 
         keys = pygame.key.get_pressed()
@@ -298,7 +299,7 @@ class Character:
     MOVEMENT_ACCEL = 0.06
     FRICTION       = 0.78
 
-    def __init__(self, x, y, jump_height, movement_speed, weight, lives, max_speed, moveset, percent, facing_right, airborn):
+    def __init__(self, x, y, jump_height, movement_speed, weight, lives, max_speed, moveset, percent, facing_right, airborn, hud_location, hud_size):
         self.x = x
         self.y = y
         self.jump_height = jump_height
@@ -310,7 +311,8 @@ class Character:
         self.moveset = moveset
         self.facing_right = facing_right
         self.airborn = airborn
-
+        self.hud_size = hud_size
+        self.hud_location = hud_location
         self.double_jump = False
 
         self.current_image = None
@@ -326,7 +328,10 @@ class Character:
 
         #self.moving_left = False
         #self.moving_right = False
-
+    p1_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
+    p2_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
+    hud1_sprite = p1_hud.get_rect()
+    hud2_sprite = p2_hud.get_rect()
     def moving_right(self):
         self.movement_right()
 
@@ -482,7 +487,6 @@ marshals_moves = {
     'air_idle' : {'animations' : marshal_airidle}
 }
 
-
 class Game:
     def __init__(self):
         pygame.init()
@@ -493,11 +497,10 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000, hud_lcation = (SCREEN_WIDTH//4, SCREEN_HEIGHT//5), hud_size = (210, 210))
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500, hud_location = (SCREEN_WIDTH//1.3, SCREEN_HEIGHT//5), hud_size = (210, 210))
         self.players = InputHandler(self.player1, self.player2)
         self.input = InputHandler(self.player1, self.player2)
-
         self.player1_attack_hitbox = None
         self.player2_attack_hitbox = None
 
@@ -541,7 +544,10 @@ class Game:
 
         pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
-        
+        # Loads the hud
+        pygame.draw.rect(self.window, (0, 0, 0), hud.hud1_sprite.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), hud.hud2_sprite.rect)
+
 
 
         if self.player1.current_image is not None:
@@ -550,7 +556,7 @@ class Game:
         if self.player2.current_image is not None:
             # self.window.blit(self.player2.current_image, (self.player2.rect.x, self.player2.rect.bottom - self.player2.current_image.get_height()))
             self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height()))
-
+        
 
 
         pygame.display.flip()
