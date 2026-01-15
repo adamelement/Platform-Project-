@@ -5,9 +5,9 @@ class Stage():
     def __init__(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
-        self.stage_top = pygame.Rect(dkknds, dimensions[1], dimensions[2], dimensions[3])
-        self.stage_bottomr = pygame.Rect()
-        self.stage_bottoml = pygame.Rect()
+        self.stage_top = pygame.Rect(50, 700, 1820, 100)
+        self.stage_bottomr = pygame.Rect(0,0,0,0)
+        self.stage_bottoml = pygame.Rect(0,0,0,0)
 
     def ground_collision(self):
         if self.stage_top.colliderect(self.player1.rect):
