@@ -20,10 +20,6 @@ class Stage():
             self.player2.airborn = False
         else:
             self.player2.airborn = True
-        if self.player1.airborn:
-            self.player1.gravity()
-        if self.player2.airborn:
-            self.player2.gravity()
 
     def stage_collision(self):
         if self.stage_bottomr.colliderect(self.player1.rect):
