@@ -22,10 +22,10 @@ class Stage():
         pygame.draw.rect(surface, (255, 255, 255), self.stage_top)
 
     def deathbox(self, player):
-        if player.y > 800 and player.lives > 0:
+        if player.y > 710 and player.lives > 0:
             player.lives -= 1
             player.x = 960
-            player.y = 800
+            player.y = 100
         elif player.lives < 0:
             return
         
