@@ -15,7 +15,6 @@ import pygame
 import math
 import sys
 from stage import Stage
-
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOUR = (0, 0, 0)
@@ -319,7 +318,7 @@ class Character:
 
         self.images = []
         self.hitboxes = []
-        self.rect = pygame.Rect(self.x, self.y, 40, 60)
+        self.rect = pygame.Rect(self.x, self.y, 100, 300)
         self.colour = (255, 255, 255)
 
         self.vx = 0.0
@@ -494,11 +493,11 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 500)
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 50)
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 50)
         self.players = InputHandler(self.player1, self.player2)
         self.input = InputHandler(self.player1, self.player2)
-        self.stage = Stage(self.player1, self.player2)
+        self.stage = Stage()
 
         self.player1_attack_hitbox = None
         self.player2_attack_hitbox = None
@@ -522,7 +521,10 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
-            self.stage.ground_collision()
+            self.stage.deathbox(self.player1)
+            self.stage.deathbox(self.player2)
+            self.stage.ground_collision(self.player1)
+            self.stage.ground_collision(self.player2)
 
         pygame.quit()
         sys.exit()
@@ -542,17 +544,18 @@ class Game:
     def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
 
-        pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
-        pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), self.player1.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), self.player2.rect)
+        self.stage.stage_draw(self.window)
         
-
-
+        
         if self.player1.current_image is not None:
-            # self.window.blit(self.player1.current_image, (self.player1.rect.x, self.player1.rect.bottom - self.player1.current_image.get_height()))
-            self.window.blit(self.player1.current_image, (self.player1.rect.centerx - self.player1.current_image.get_width()//2, self.player1.rect.bottom - self.player1.current_image.get_height()))
+            #self.window.blit(self.player1.current_image, (self.player1.rect.x, self.player1.rect.bottom - self.player1.current_image.get_height()))
+            self.window.blit(self.player1.current_image, (self.player1.rect.centerx - self.player1.current_image.get_width()//2, self.player1.rect.bottom - self.player1.current_image.get_height() + 60))
+        
         if self.player2.current_image is not None:
-            # self.window.blit(self.player2.current_image, (self.player2.rect.x, self.player2.rect.bottom - self.player2.current_image.get_height()))
-            self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height()))
+            #self.window.blit(self.player2.current_image, (self.player2.rect.x, self.player2.rect.bottom - self.player2.current_image.get_height()))
+            self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height() + 60))
 
 
 
