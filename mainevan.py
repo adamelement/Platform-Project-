@@ -14,7 +14,6 @@ if __name__ == "__main__":
 import pygame
 import math
 import sys
-import hud
 
 SCREEN_WIDTH = 1080
 SCREEN_HEIGHT = 1080
@@ -25,8 +24,8 @@ PLAYER1_COLOUR = (0, 0, 255)
 PLAYER2_COLOUR = (255, 255, 0)
 HITBOX_COLOUR = (255, 0, 255)
 
-player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000)
-
+pygame.display.init()
+pygame.display.set_mode((1920, 1080))
 class Hitbox:
     def __init__(self, dimensions, knockback, launch_angle):
         self.hitbox = pygame.Rect(dimensions)
@@ -325,13 +324,13 @@ class Character:
 
         self.vx = 0.0
         self.vy = 0.0
-
-        #self.moving_left = False
-        #self.moving_right = False
     p1_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
     p2_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
     hud1_sprite = p1_hud.get_rect()
-    hud2_sprite = p2_hud.get_rect()
+    hud2_sprite = p2_hud.get_rect() 
+        #self.moving_left = False
+        #self.moving_right = False
+
     def moving_right(self):
         self.movement_right()
 
@@ -397,6 +396,11 @@ class Character:
     def draw(self, surface):
         pygame.draw.rect(surface, self.colour, self.rect)
 
+    def draw_hud(self, surface, hud_size, hud_location, hud1_sprite, hud2_sprite):
+        pygame.draw.rect(surface, self.colour, (hud_location, hud_size))
+        self.window.blit(surface, hud1_sprite)
+        self.window.blit(surface, hud2_sprite)
+
     def update_location(self):
         self.rect.x += self.vx
         self.rect.y += self.vy
@@ -443,8 +447,7 @@ class Character:
             self.current_image = None
 
 
-pygame.display.init()
-pygame.display.set_mode((1920, 1080))
+
 
 marshal_up_tilt = []
 for i in range (1,22):
@@ -497,7 +500,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000, hud_lcation = (SCREEN_WIDTH//4, SCREEN_HEIGHT//5), hud_size = (210, 210))
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000, hud_location = (SCREEN_WIDTH//4, SCREEN_HEIGHT//5), hud_size = (210, 210))
         self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500, hud_location = (SCREEN_WIDTH//1.3, SCREEN_HEIGHT//5), hud_size = (210, 210))
         self.players = InputHandler(self.player1, self.player2)
         self.input = InputHandler(self.player1, self.player2)
@@ -523,7 +526,7 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
-
+            self.draw_hud()
         pygame.quit()
         sys.exit()
 
@@ -539,14 +542,14 @@ class Game:
         self.player1.update_location()
         self.player2.update_location()
 
-    def draw(self):
+    def draw(self, hud1_sprite, hud2_sprite):
         self.window.fill(BACKGROUND_COLOUR)
 
         pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
         # Loads the hud
-        pygame.draw.rect(self.window, (0, 0, 0), hud.hud1_sprite.rect)
-        pygame.draw.rect(self.window, (0, 0, 0), hud.hud2_sprite.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), hud1_sprite.rect)
+        pygame.draw.rect(self.window, (0, 0, 0), hud2_sprite.rect)
 
 
 
