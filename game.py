@@ -22,7 +22,7 @@ import hud
 from character import Character
 from input_handler import InputHandler
 from hitbox import Hitbox
-
+from stage import Stage
 
 class Game:
     """
@@ -54,6 +54,7 @@ class Game:
         self.players = InputHandler(self.player1, self.player2)
         # Input handling objects for both characters 
         self.input = InputHandler(self.player1, self.player2)
+        platform = Stage(self.player1, self.player2)
 
         # Attack hitboxes (spawned when attacking) 
       

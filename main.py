@@ -14,8 +14,9 @@ if __name__ == "__main__":
 import pygame
 import math
 import sys
+from stage import Stage
 
-SCREEN_WIDTH = 1080
+SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 BACKGROUND_COLOUR = (0, 0, 0)
 CAPTION = 'Platform Fight!'
@@ -493,10 +494,11 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000)
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 500)
         self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500)
         self.players = InputHandler(self.player1, self.player2)
         self.input = InputHandler(self.player1, self.player2)
+        self.stage = Stage(self.player1, self.player2)
 
         self.player1_attack_hitbox = None
         self.player2_attack_hitbox = None
@@ -520,6 +522,7 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
+            self.stage.ground_collision()
 
         pygame.quit()
         sys.exit()
