@@ -548,14 +548,14 @@ class Game:
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
         self.stage.stage_draw(self.window)
         
-
-
+        
         if self.player1.current_image is not None:
             #self.window.blit(self.player1.current_image, (self.player1.rect.x, self.player1.rect.bottom - self.player1.current_image.get_height()))
-            self.window.blit(self.player1.current_image, (self.player1.rect.centerx - self.player1.current_image.get_width()//2, self.player1.rect.bottom - self.player1.current_image.get_height()))
+            self.window.blit(self.player1.current_image, (self.player1.rect.centerx - self.player1.current_image.get_width()//2, self.player1.rect.bottom - self.player1.current_image.get_height() + 30))
+        
         if self.player2.current_image is not None:
             #self.window.blit(self.player2.current_image, (self.player2.rect.x, self.player2.rect.bottom - self.player2.current_image.get_height()))
-            self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height()))
+            self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height() + 30))
 
 
 
