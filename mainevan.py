@@ -324,10 +324,10 @@ class Character:
 
         self.vx = 0.0
         self.vy = 0.0
-    p1_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
-    p2_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
-    hud1_sprite = p1_hud.get_rect()
-    hud2_sprite = p2_hud.get_rect() 
+        self.p1_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
+        self.p2_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
+        self.hud1_sprite = self.p1_hud.get_rect()
+        self.hud2_sprite = self.p2_hud.get_rect() 
         #self.moving_left = False
         #self.moving_right = False
 
@@ -396,10 +396,10 @@ class Character:
     def draw(self, surface):
         pygame.draw.rect(surface, self.colour, self.rect)
 
-    def draw_hud(self, surface, hud_size, hud_location, hud1_sprite, hud2_sprite):
-        pygame.draw.rect(surface, self.colour, (hud_location, hud_size))
-        self.window.blit(surface, hud1_sprite)
-        self.window.blit(surface, hud2_sprite)
+    def draw_hud(self, surface):
+        pygame.draw.rect(surface, self.colour, (self.hud_location, self.hud_size))
+        surface.blit((self.hud_location), self.hud1_sprite)
+        surface.blit((self.hud_location), self.hud2_sprite)
 
     def update_location(self):
         self.rect.x += self.vx
@@ -526,7 +526,8 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
-            self.draw_hud()
+            self.player1.draw(self.window)
+            self.player1.draw_hud(self.window)
         pygame.quit()
         sys.exit()
 
@@ -541,16 +542,11 @@ class Game:
         self.player2.gravity()
         self.player1.update_location()
         self.player2.update_location()
-
-    def draw(self, hud1_sprite, hud2_sprite):
+    def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
 
         pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
-        # Loads the hud
-        pygame.draw.rect(self.window, (0, 0, 0), hud1_sprite.rect)
-        pygame.draw.rect(self.window, (0, 0, 0), hud2_sprite.rect)
-
 
 
         if self.player1.current_image is not None:
