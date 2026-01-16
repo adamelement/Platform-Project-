@@ -328,7 +328,14 @@ class Character:
         self.hud_image = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
         self.hud_image = pygame.transform.smoothscale(self.hud_image, HUD_SIZE)
         self.hud_rect = self.hud_image.get_rect(topleft=hud_location)
-        #self.moving_left = False
+        self.percent_scale = 1.0
+        self.hud_render = pygame.image.load('assets/backgrounds/hud_assets/marshall_hud.png').convert_alpha() #not scalable, will change to accomodate multiple characters later
+        render_size = int(self.hud_rect.height*0.8)
+
+        self.hud_render = pygame.transform.smoothscale(self.hud_render, (render_size, render_size)) #smoothscale uses bilinear filtering for scaling leading to smoother looking graphics 
+        self.hud_render_rect = self.hud_render.get_rect()
+
+        #self.moving_left = False   
         #self.moving_right = False
 
     def moving_right(self):
@@ -397,14 +404,23 @@ class Character:
         pygame.draw.rect(surface, self.colour, self.rect)
 
     def draw_hud(self, surface, font):
+
         surface.blit(self.hud_image, self.hud_rect)
         percent_value = int(self.percent)
-        percent_text = font.render(f"{percent_value}%", True, (255, 255, 255)) #Structured like (text, antialiasing (smoohting, colour))
+        if self.percent > 100:
+            percent_colour = (255, 80, 80)
+        elif self.percent > 50:
+            percent_colour = (255, 200, 0)
+        else:
+            percent_colour = (255, 255, 255)
+        percent_text = font.render(f"{percent_value}%", True, percent_colour) #Structured like (text, antialiasing (smoohting, colour))
+        '''self.percent_scale = max(1.0, self.percent_scale - 0.05)
+        scaled_text = pygame.transform.rotozoom(percent_text, 0, self.percent_scale)''' #Hypothetical code I tried to add in but wasn't able to, probably would take too long to finalize
         text_x = self.hud_rect.right - percent_text.get_width() - 20 #makes text location
         text_y = self.hud_rect.bottom - percent_text.get_height() - 15
         surface.blit(percent_text, (text_x, text_y))
-
-    def update_location(self):
+        surface.blit(self.hud_render, self.hud_rect)
+    def update_location(self):  
         self.rect.x += self.vx
         self.rect.y += self.vy
 
@@ -575,7 +591,8 @@ class Game:
                     dx = kb * math.cos(hb.launch_angle * math.pi / 180) * 0.05
                     dy = -kb * math.sin(hb.launch_angle * math.pi / 180) * 0.05
                     self.player2.take_hit(dx, dy)
-                    self.player2.percent += 8 #temporary for testing the HUD
+                    #self.percent_scale = 1.3
+                    self.player2.percent += 2 #temporary for testing the HUD
                     break
 
             for hb in player2_attack:
@@ -584,7 +601,8 @@ class Game:
                     dx = kb * math.cos(hb.launch_angle * math.pi / 180) * 0.05
                     dy = -kb * math.sin(hb.launch_angle * math.pi / 180) * 0.05
                     self.player1.take_hit(dx, dy)
-                    self.player1.percent += 8 
+                    #self.percent_scale = 1.3
+                    self.player1.percent += 2 
                     break
 
             self.player1.hitboxes.clear()
