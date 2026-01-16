@@ -3,7 +3,7 @@ pygame.init()
 class Stage():
     def __init__(self):
 
-        self.stage_top = pygame.Rect(50, 700, 1820, 100)
+        self.stage_top = pygame.Rect(150, 700, 1620, 100)
         self.stage_bottomr = pygame.Rect(0,0,0,0)
         self.stage_bottoml = pygame.Rect(0,0,0,0)
 
@@ -18,8 +18,17 @@ class Stage():
                     return
         player.airborn = True
 
-    def draw(self, surface):
-        pygame.draw.rect(surface, (120, 120, 120), self.stage_top)
+    def stage_draw(self, surface):
+        pygame.draw.rect(surface, (255, 255, 255), self.stage_top)
+
+    def deathbox(self, player):
+        if player.y < 900 and player.lives > 0:
+            player.lives -= 1
+            player.x = 960
+            player.y = 800
+        elif player.lives < 0:
+            return
+        
 
 
 
