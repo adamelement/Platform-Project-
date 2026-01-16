@@ -15,14 +15,15 @@ import pygame
 import math
 import sys
 
-SCREEN_WIDTH = 1080
+SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
-BACKGROUND_COLOUR = (0, 0, 0)
+BACKGROUND_COLOUR = (50, 50, 50)
 CAPTION = 'Platform Fight!'
 FPS = 60
 PLAYER1_COLOUR = (0, 0, 255)
 PLAYER2_COLOUR = (255, 255, 0)
 HITBOX_COLOUR = (255, 0, 255)
+HUD_SIZE = 240, 240
 
 pygame.display.init()
 pygame.display.set_mode((1920, 1080))
@@ -324,10 +325,9 @@ class Character:
 
         self.vx = 0.0
         self.vy = 0.0
-    p1_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
-    p2_hud = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
-    hud1_sprite = p1_hud.get_rect()
-    hud2_sprite = p2_hud.get_rect() 
+        self.hud_image = pygame.image.load('assets/backgrounds/hud_assets/hud.webp').convert_alpha()
+        self.hud_image = pygame.transform.smoothscale(self.hud_image, HUD_SIZE)
+        self.hud_rect = self.hud_image.get_rect(topleft=hud_location)
         #self.moving_left = False
         #self.moving_right = False
 
@@ -396,10 +396,13 @@ class Character:
     def draw(self, surface):
         pygame.draw.rect(surface, self.colour, self.rect)
 
-    def draw_hud(self, surface, hud_size, hud_location, hud1_sprite, hud2_sprite):
-        pygame.draw.rect(surface, self.colour, (hud_location, hud_size))
-        self.window.blit(surface, hud1_sprite)
-        self.window.blit(surface, hud2_sprite)
+    def draw_hud(self, surface, font):
+        surface.blit(self.hud_image, self.hud_rect)
+        percent_value = int(self.percent)
+        percent_text = font.render(f"{percent_value}%", True, (255, 255, 255)) #Structured like (text, antialiasing (smoohting, colour))
+        text_x = self.hud_rect.right - percent_text.get_width() - 20 #makes text location
+        text_y = self.hud_rect.bottom - percent_text.get_height() - 15
+        surface.blit(percent_text, (text_x, text_y))
 
     def update_location(self):
         self.rect.x += self.vx
@@ -499,9 +502,10 @@ class Game:
 
         self.clock = pygame.time.Clock()
         self.is_running = True
+        self.percent_font = pygame.font.Font(None, 64) # for loading the font on the HUD
 
-        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000, hud_location = (SCREEN_WIDTH//4, SCREEN_HEIGHT//5), hud_size = (210, 210))
-        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500, hud_location = (SCREEN_WIDTH//1.3, SCREEN_HEIGHT//5), hud_size = (210, 210))
+        self.player1 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = True, airborn = False, percent = 0, x = 1000, y = 1000, hud_location = (int(SCREEN_WIDTH//4), int(SCREEN_HEIGHT//1.6)), hud_size = (240, 240))
+        self.player2 = Character(jump_height = 31, movement_speed = 1.8, weight = 95, lives = 3, max_speed = 6, moveset = marshals_moves, facing_right = False, airborn = False, percent = 0, x = 500, y = 500, hud_location = (int(SCREEN_WIDTH//1.5), int(SCREEN_HEIGHT//1.6)), hud_size = (240, 240))
         self.players = InputHandler(self.player1, self.player2)
         self.input = InputHandler(self.player1, self.player2)
         self.player1_attack_hitbox = None
@@ -526,7 +530,7 @@ class Game:
             self.update()
             self.collide_check()
             self.draw()
-            self.draw_hud()
+            self.player1.draw(self.window)
         pygame.quit()
         sys.exit()
 
@@ -541,16 +545,11 @@ class Game:
         self.player2.gravity()
         self.player1.update_location()
         self.player2.update_location()
-
-    def draw(self, hud1_sprite, hud2_sprite):
+    def draw(self):
         self.window.fill(BACKGROUND_COLOUR)
 
         pygame.draw.rect(self.window, PLAYER1_COLOUR, self.player1.rect)
         pygame.draw.rect(self.window, PLAYER2_COLOUR, self.player2.rect)
-        # Loads the hud
-        pygame.draw.rect(self.window, (0, 0, 0), hud1_sprite.rect)
-        pygame.draw.rect(self.window, (0, 0, 0), hud2_sprite.rect)
-
 
 
         if self.player1.current_image is not None:
@@ -559,8 +558,9 @@ class Game:
         if self.player2.current_image is not None:
             # self.window.blit(self.player2.current_image, (self.player2.rect.x, self.player2.rect.bottom - self.player2.current_image.get_height()))
             self.window.blit(self.player2.current_image, (self.player2.rect.centerx - self.player2.current_image.get_width()//2, self.player2.rect.bottom - self.player2.current_image.get_height()))
-        
 
+        self.player1.draw_hud(self.window, self.percent_font) #Blits the hud percentage text and hud assets
+        self.player2.draw_hud(self.window, self.percent_font)
 
         pygame.display.flip()
 
@@ -575,6 +575,7 @@ class Game:
                     dx = kb * math.cos(hb.launch_angle * math.pi / 180) * 0.05
                     dy = -kb * math.sin(hb.launch_angle * math.pi / 180) * 0.05
                     self.player2.take_hit(dx, dy)
+                    self.player2.percent += 8 #temporary for testing the HUD
                     break
 
             for hb in player2_attack:
@@ -583,6 +584,7 @@ class Game:
                     dx = kb * math.cos(hb.launch_angle * math.pi / 180) * 0.05
                     dy = -kb * math.sin(hb.launch_angle * math.pi / 180) * 0.05
                     self.player1.take_hit(dx, dy)
+                    self.player1.percent += 8 
                     break
 
             self.player1.hitboxes.clear()
